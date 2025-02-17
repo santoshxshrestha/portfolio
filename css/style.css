@@ -2,3 +2,11 @@
     background-color: black;
     color: white;
 }
+
+header {
+    border: 2px solid white;
+    height: 100px;
+    width: 100vw;
+    justify-content: center;
+    justify-items: auto;
+}
