@@ -1,71 +1,58 @@
+:root{
+  --primary-color:#eb6f92:
+  --secondary-color: antiquewhite;
+  --ghost-white: #f2e9e1;
+  --sunset-color: #f6c177;
+  --secondary-color: #6e6a86;
+  --black-color: #26233a;
+}
 *{
-    background-color: black;
-    color: white;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    scroll-behavior: smooth;
-    /* here this line above will just provide smooth scrolling for anchor linka */
+  margin: 0;
+  padding: 0;
+  background-color: var(--sunset-color)
 }
 
-header {
-    background: lightcyan;
-    padding: 15px 0;
-    position: fixed;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 3, 4, 0.4);
-}
-/* navigation styles  */
-.nav-links{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-.nav-links li {
-    display: inline;
-}
-.nav-links a:hover{
-    background: #555;
-    border-radius:  5px;
+/* header section starts from here  */
+header{
+  background-color: var(--ghost-white);
 }
 
-/* Section Styling */
-section {
-  padding: 80px 20px; /* Space around sections */
-  min-height: 100vh;  /* Make each section full-screen height */
-  text-align: center;
+header nav {
+  margin: 0 2rem;
   display: flex;
+  justify-content: space-between;
+  background-color: var(--ghost-white);
+}
+
+header nav .nav_img {
   justify-content: center;
   align-items: center;
+  background-color: var(--ghost-white);
+  display: flex;
+  gap: 10px;
 }
 
-/* Different Backgrounds for Each Section */
-#home {
-  background: linear-gradient(to right, #ff7e5f, #feb47b);
-  color: white;
+header nav .nav_img,
+headr nav .nav_img h1 {
+  background-color: var(--ghost-white);
+  font-size: 32px;
 }
 
-#about {
-  background: linear-gradient(to right, #4facfe, #00f2fe);
-  color: white;
+headr nav .nav_img h1 {
+  background-color: var(--ghost-white);
 }
-
-#education {
-  background: linear-gradient(to right, #43cea2, #185a9d);
-  color: white;
+header nav .nav_item {
+  background-color: var(--ghost-white);
+  display: inline;
 }
+header nav .nav_item ul{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  background-color: var(--ghost-white);
+  gap: 20px;
+  font-size: 34px;
+  text-transform: uppercase;
+  font-weight: 700;
 
-#skills {
-  background: linear-gradient(to right, #ff9966, #ff5e62);
-  color: white;
-}
-
-#contact {
-  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
-  color: black;
 }
