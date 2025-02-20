@@ -9,7 +9,10 @@
 *{
   margin: 0;
   padding: 0;
-  background-color: var(--sunset-color)
+  background-color: var(--sunset-color);
+}
+.title {
+  background-color: var(--ghost-white);
 }
 
 /* header section starts from here  */
@@ -36,16 +39,16 @@ header nav .nav_img {
   
 }
 
-header nav .nav_img,
-headr nav .nav_img h1 {
+header nav .nav_img h1 {
   background-color: var(--ghost-white);
   font-size: 32px;
   padding: 1.2rem 0;
 }
-
-headr nav .nav_img h1 {
-  background-color: var(--ghost-white);
+header nav .nav_img img{
+  border-radius: 40%;
 }
+
+
 header nav .nav_item {
   background-color: var(--ghost-white);
   display: inline;
