@@ -15,6 +15,9 @@
 /* header section starts from here  */
 header{
   background-color: var(--ghost-white);
+  box-shadow: 1px 1px 1px 1px var(--primary-color);
+  position: sticky;
+  top: 0;
 }
 
 header nav {
@@ -30,12 +33,14 @@ header nav .nav_img {
   background-color: var(--ghost-white);
   display: flex;
   gap: 10px;
+  
 }
 
 header nav .nav_img,
 headr nav .nav_img h1 {
   background-color: var(--ghost-white);
   font-size: 32px;
+  padding: 1.2rem 0;
 }
 
 headr nav .nav_img h1 {
@@ -55,4 +60,21 @@ header nav .nav_item ul{
   text-transform: uppercase;
   font-weight: 700;
 
+}
+
+header nav .nav_itm ul li {
+  background-color : var(--ghost-white)
+}
+
+header nav .nav_item ul li a{
+background-color: var(--ghost-white);
+text-decoration: none;
+  color: var(--primary-color);
+  padding: 1.5rem 0;
+  transition: ease 1s all;
+}
+
+header nav .nav_item ul li a:hover{
+
+  background-color: var(--primary-color);
 }
