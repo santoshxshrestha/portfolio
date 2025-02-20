@@ -18,9 +18,11 @@
 /* header section starts from here  */
 header{
   background-color: var(--ghost-white);
-  box-shadow: 1px 1px 1px 1px var(--primary-color);
+  box-shadow: 1px 5px 1px 1px black;
   position: sticky;
   top: 0;
+  height: 4vh;
+
 }
 
 header nav {
@@ -28,6 +30,7 @@ header nav {
   display: flex;
   justify-content: space-between;
   background-color: var(--ghost-white);
+  height: 4vh;
 }
 
 header nav .nav_img {
@@ -41,11 +44,12 @@ header nav .nav_img {
 
 header nav .nav_img h1 {
   background-color: var(--ghost-white);
-  font-size: 32px;
-  padding: 1.2rem 0;
+  font-size: 30px;
+  /* padding: .6rem 0; */
 }
 header nav .nav_img img{
-  border-radius: 40%;
+  /* border-radius: 100%; */
+  height: 50px;
 }
 
 
@@ -59,7 +63,7 @@ header nav .nav_item ul{
   align-items: center;
   background-color: var(--ghost-white);
   gap: 20px;
-  font-size: 34px;
+  font-size: 30px;
   text-transform: uppercase;
   font-weight: 700;
 
@@ -73,11 +77,10 @@ header nav .nav_item ul li a{
 background-color: var(--ghost-white);
 text-decoration: none;
   color: var(--primary-color);
-  padding: 1.5rem 0;
+  /* padding: .6rem 0; */
   transition: ease 1s all;
 }
 
 header nav .nav_item ul li a:hover{
-
   background-color: var(--primary-color);
 }
