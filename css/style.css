@@ -6,6 +6,12 @@
   --secondary-color: #6e6a86;
   --black-color: #26233a;
 }
+
+/* universeral container size this is used in every section */
+.contaner{
+  margin: 0 2rem;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -24,6 +30,7 @@ header{
   height: 4vh;
 
 }
+
 
 header nav {
   margin: 0 2rem;
@@ -83,4 +90,36 @@ text-decoration: none;
 
 header nav .nav_item ul li a:hover{
   background-color: var(--primary-color);
+}
+;
+.home {
+    background-image: url(../asset/images/pngwing.com.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    display: flex;
+
+}
+.home-content{
+  max-width: 900px;
+  font-size: 92px;
+  color: black;
+}
+.home-content button{
+  padding: 15px 30px;
+  color: black;
+  border: none;
+  font-size: 40px;
+  background-color: var(--ghost-white);
+  border-radius: 10%;
+  transition: ease 1.2s all;
+}
+.home-content button:hover{
+  color: white;
+  background-color: black;
+  box-shadow: 1px 1px 2px 2px red; 
+}
+
+.fa-magnifying-glass{
+  background-color: transparent;
+  font-size: 29px;
 }
