@@ -1,0 +1,141 @@
+ body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header, footer {
+      background: #121212;
+      padding: 1rem 0;
+      animation: fadeSlideIn 1s ease-in-out;
+      box-shadow: 0 0 20px #0ff2;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #00ffff, #ff00ff);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0;
+      margin: 1rem 0 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #ccc;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0ff;
+    }
+
+    .contact-form {
+      background-color: #1e1e1e;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #0ff2;
+      margin-top: 2rem;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    label {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      color: #aaa;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+
+    input:focus + label,
+    input:not(:placeholder-shown) + label,
+    textarea:focus + label,
+    textarea:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 5px;
+      font-size: 0.75rem;
+      color: #0ff;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 10px;
+      border: none;
+      border-bottom: 2px solid #555;
+      background-color: transparent;
+      color: white;
+      font-size: 1rem;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #0ff;
+    }
+
+    .button {
+      background: #0ff;
+      color: #000;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .button:hover {
+      background: #00cccc;
+    }
+
+    .success-message {
+      background: #072;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+      animation: popFadeIn 0.8s ease-out;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes popFadeIn {
+      0% {opacity: 0; transform: scale(0.9);}
+      100% {opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes fadeSlideIn {
+      0% {opacity: 0; transform: translateY(-20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
