@@ -5,7 +5,6 @@ use rocket::response::Redirect;
 use rocket_dyn_templates::{Template, context};
 use serde::Serialize;
 
-// Define a simple project structure
 #[derive(Serialize)]
 struct Project {
     title: String,
@@ -13,7 +12,6 @@ struct Project {
     image_path: String,
 }
 
-// Contact form structure
 #[derive(FromForm)]
 struct ContactForm {
     name: String,
@@ -21,7 +19,6 @@ struct ContactForm {
     message: String,
 }
 
-// Home page route
 #[get("/")]
 fn index() -> Template {
     Template::render("index", context! {
@@ -30,7 +27,6 @@ fn index() -> Template {
     })
 }
 
-// Projects page route
 #[get("/projects")]
 fn projects() -> Template {
     let projects = vec![
@@ -52,7 +48,6 @@ fn projects() -> Template {
     })
 }
 
-// Contact page route
 #[get("/contact")]
 fn contact() -> Template {
     Template::render("contact", context! {
@@ -60,11 +55,8 @@ fn contact() -> Template {
     })
 }
 
-// Contact form submission
 #[post("/contact", data = "<form>")]
 fn submit_contact(form: Form<ContactForm>) -> Redirect {
-    // Here you would process the form data
-    // For now, we just print it and redirect
     println!("Contact form submitted: {} - {}", form.name, form.email);
     
     Redirect::to("/contact?success=true")
