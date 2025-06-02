@@ -17,7 +17,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         io::stdin().read_line(&mut input)?;
         let message = input.trim();
 
-        if message == "quit" || message == "q" {
+        if message == "quit" || message == "q" || message == "exit" {
             println!("👋 Goodbye!");
             break;
         }
