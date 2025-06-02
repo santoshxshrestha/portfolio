@@ -1,5 +1,9 @@
 #![allow(unused)]
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{
+    get, post,
+    web::{self, route},
+    App, HttpResponse, HttpServer, Responder,
+};
 #[get("/")]
 async fn hello() -> impl Responder {
     HttpResponse::Ok().body("Hello Santosh")
@@ -11,8 +15,17 @@ async fn echo(req_body: String) -> impl Responder {
     HttpResponse::Ok().body(req_body)
 }
 
+#[get("/lol")]
+async fn index() -> impl Responder {
+    HttpResponse::Created().body("Item created lol")
+}
+
 async fn manual_hello() -> impl Responder {
     HttpResponse::Ok().body("Hey there")
+}
+
+async fn not_found() -> impl Responder {
+    HttpResponse::NotFound().body("Oops! The page you are looking . That shit does not exist.")
 }
 
 #[actix_web::main]
@@ -22,6 +35,8 @@ async fn main() -> std::io::Result<()> {
             .service(hello)
             .service(echo)
             .route("/hey", web::get().to(manual_hello))
+            .service(index)
+            .default_service(route().to(not_found))
     })
     .bind(("127.0.0.1", 8080))?
     .run()
