@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./templates/*.html.tera"],
+  content: ["./templates/*.html"],
   theme: {
     extend: {},
   },
