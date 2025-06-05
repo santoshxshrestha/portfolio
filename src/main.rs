@@ -29,11 +29,6 @@ async fn not_found() -> impl Responder {
     HttpResponse::NotFound().body("Oops! The page you are looking . That shit does not exist.")
 }
 
-//some middle ware is here
-async fn notify() -> HttpResponse {
-    HttpResponse::Ok().body("Server has been invocked")
-}
-
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     env_logger::init();
