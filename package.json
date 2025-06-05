@@ -5,6 +5,6 @@
     "tailwindcss": "^4.1.4"
   },
   "scripts": {
-    "start": "npx @tailwindcss/cli -i ./input.css -0 ./static/css/output.css --watch & cargo run"
+    "start": "npx @tailwindcss/cli -i ./input.css -0 ./static/css/output.css --watch & cargo watch -x run"
   }
 }

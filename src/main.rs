@@ -12,7 +12,7 @@ struct HelloTemplate {
 async fn index() -> impl Responder {
     let template = HelloTemplate {
         name: "Santosh".to_string(),
-        title: "kai hola".to_lowercase(),
+        title: "Santosh".to_lowercase(),
     };
     HttpResponse::Ok()
         .content_type("text/html")
