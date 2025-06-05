@@ -1,6 +1,4 @@
-use actix_web::get;
-use actix_web::{App, HttpResponse, HttpServer, Responder, web::route};
-
+use actix_web::{App, HttpResponse, HttpServer, Responder, get, web::route};
 use askama::Template;
 
 #[derive(Template)]
@@ -11,7 +9,7 @@ struct HelloTemplate {
 }
 
 #[get("/")]
-async fn hello() -> impl Responder {
+async fn index() -> impl Responder {
     let template = HelloTemplate {
         name: "Santosh".to_string(),
         title: "kai hola".to_lowercase(),
@@ -30,7 +28,7 @@ async fn main() -> std::io::Result<()> {
     env_logger::init();
     HttpServer::new(|| {
         App::new()
-            .service(hello)
+            .service(index)
             .default_service(route().to(not_found))
     })
     .bind(("127.0.0.1", 8080))?
