@@ -1,9 +1,10 @@
-#![allow(unused)]
 use actix_web::{
-    get, post,
+    App, HttpResponse, HttpServer, Responder, get,
+    middleware::Logger,
+    post,
     web::{self, route},
-    App, HttpResponse, HttpServer, Responder,
 };
+use env_logger;
 #[get("/")]
 async fn hello() -> impl Responder {
     HttpResponse::Ok().body("Hello Santosh")
@@ -28,13 +29,20 @@ async fn not_found() -> impl Responder {
     HttpResponse::NotFound().body("Oops! The page you are looking . That shit does not exist.")
 }
 
+//some middle ware is here
+async fn notify() -> HttpResponse {
+    HttpResponse::Ok().body("Server has been invocked")
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    env_logger::init();
     HttpServer::new(|| {
         App::new()
+            .wrap(Logger::default())
+            .route("/hey", web::get().to(manual_hello))
             .service(hello)
             .service(echo)
-            .route("/hey", web::get().to(manual_hello))
             .service(index)
             .default_service(route().to(not_found))
     })
