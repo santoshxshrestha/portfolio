@@ -25,7 +25,6 @@ async fn not_found() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    env_logger::init();
     HttpServer::new(|| {
         App::new()
             .service(index)
