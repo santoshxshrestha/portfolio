@@ -1,28 +1,31 @@
 use actix_web::{
-    App, HttpResponse, HttpServer, Responder, get,
-    middleware::Logger,
-    post,
-    web::{self, route},
+    App, HttpResponse, HttpServer, Responder, get, middleware::Logger, post, web::route,
 };
-use env_logger;
+
+use askama::Template;
+
+#[derive(Template)]
+#[template(path = "index.html")]
+struct HelloTemplate {
+    name: String,
+    title: String,
+}
+
 #[get("/")]
 async fn hello() -> impl Responder {
-    HttpResponse::Ok().body("Hello Santosh")
+    let template = HelloTemplate {
+        name: "Santosh".to_string(),
+        title: "kai hola".to_lowercase(),
+    };
+    HttpResponse::Ok()
+        .content_type("text/html")
+        .body(template.render().unwrap())
 }
 
 #[post("/echo")]
 async fn echo(req_body: String) -> impl Responder {
     println!("{req_body}");
     HttpResponse::Ok().body(req_body)
-}
-
-#[get("/lol")]
-async fn index() -> impl Responder {
-    HttpResponse::Created().body("Item created lol")
-}
-
-async fn manual_hello() -> impl Responder {
-    HttpResponse::Ok().body("Hey there")
 }
 
 async fn not_found() -> impl Responder {
@@ -35,10 +38,8 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .wrap(Logger::default())
-            .route("/hey", web::get().to(manual_hello))
             .service(hello)
             .service(echo)
-            .service(index)
             .default_service(route().to(not_found))
     })
     .bind(("127.0.0.1", 8080))?
