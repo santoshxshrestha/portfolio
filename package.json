@@ -1,10 +1,25 @@
 {
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.4",
-    "live-server": "^1.2.2",
-    "tailwindcss": "^4.1.4"
-  },
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "simple portfolio made by the use of only html and css changing ...",
+  "main": "index.js",
   "scripts": {
-    "start": "npx @tailwindcss/cli -i ./input.css -0 ./static/css/output.css --watch & cargo watch -x run"
+    "start": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch && cargo watch -x run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santoshxshrestha/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/santoshxshrestha/portfolio/issues"
+  },
+  "homepage": "https://github.com/santoshxshrestha/portfolio#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "tailwindcss": "^4.1.8"
   }
 }
