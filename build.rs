@@ -1,5 +1,4 @@
 use std::process::Command;
-
 fn main() {
     // Only build CSS in debug mode (during development)
     if cfg!(debug_assertions) {

@@ -1,72 +1,71 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../static/css/output.css" rel="stylesheet" />
-    <title>{{ title }} | My Portfolio</title>
-  </head>
 
-  <body class="bg-red-100">
-    <header>
-      <div class="">
-        <h1>My Portfolio</h1>
-        <nav class="">
-          <ul class="">
-            <li><a href="/">Home</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/contact">Contact</a></li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="../static/css/output.css" rel="stylesheet" />
+  <title>{{ title }} | My Portfolio</title>
+</head>
+
+<body class="bg-red-100">
+  <header>
+    <div class="">
+      <h1 class="text-blue-800">My Portfolio</h1>
+      <nav class="">
+        <ul class="">
+          <li><a href="/">Home</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main style="text-align: center" class="container">
+    <section class="hero">
+      <h2>Welcome to My Portfolio</h2>
+      <p>
+        Hi! I'm {{ name }}, trying to learn web development,
+        <br />
+        with HTML, CSS, and Rust.
+      </p>
+      <a href="/projects" class="button">View My Work</a>
+    </section>
+
+    <section class="skills">
+      <h2>My Skills</h2>
+      <div style="display: flex; justify-content: center" class="skills-container">
+        <div class="skill-card">
+          <h3>Frontend</h3>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
           </ul>
-        </nav>
-      </div>
-    </header>
-
-    <main style="text-align: center" class="container">
-      <section class="hero">
-        <h2>Welcome to My Portfolio</h2>
-        <p>
-          Hi! I'm {{ name }}, trying to learn web development,
-          <br />
-          with HTML, CSS, and Rust.
-        </p>
-        <a href="/projects" class="button">View My Work</a>
-      </section>
-
-      <section class="skills">
-        <h2>My Skills</h2>
-        <div
-          style="display: flex; justify-content: center"
-          class="skills-container"
-        >
-          <div class="skill-card">
-            <h3>Frontend</h3>
-            <ul>
-              <li>HTML</li>
-              <li>CSS</li>
-            </ul>
-          </div>
-          <div class="skill-card">
-            <h3>Backend</h3>
-            <ul>
-              <li>Rust</li>
-              <li>Rocket Framework</li>
-            </ul>
-          </div>
-          <div class="skill-card">
-            <h3>Tools</h3>
-            <ul>
-              <li>Git</li>
-              <li>vim</li>
-            </ul>
-          </div>
         </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2025 My Portfolio. Built with HTML, CSS, and Rust.</p>
+        <div class="skill-card">
+          <h3>Backend</h3>
+          <ul>
+            <li>Rust</li>
+            <li>Rocket Framework</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git</li>
+            <li>vim</li>
+          </ul>
+        </div>
       </div>
-    </footer>
-  </body>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 My Portfolio. Built with HTML, CSS, and Rust.</p>
+    </div>
+  </footer>
+</body>
+
 </html>

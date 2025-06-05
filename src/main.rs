@@ -1,3 +1,4 @@
+use actix_files::Files;
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, web::route};
 use askama::Template;
 
@@ -28,6 +29,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .service(index)
+            .service(Files::new("/static", "./static"))
             .default_service(route().to(not_found))
     })
     .bind(("127.0.0.1", 8080))?
