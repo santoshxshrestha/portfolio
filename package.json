@@ -4,7 +4,7 @@
   "description": "simple portfolio made by the use of only html and css changing ...",
   "main": "index.js",
   "scripts": {
-    "start": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch && cargo watch -x run"
+    "start": "npx @tailwindcss/cli -i ./input.css -o ./static/css/output.css --watch & cargo watch -x run"
   },
   "repository": {
     "type": "git",
