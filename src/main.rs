@@ -1,5 +1,5 @@
 use actix_files::Files;
-use actix_web::{App, HttpResponse, HttpServer, Responder, get, web::route};
+use actix_web::{App, HttpResponse, HttpServer, Responder, get, post, web::route};
 use askama::Template;
 
 #[derive(Template)]
@@ -18,6 +18,11 @@ async fn index() -> impl Responder {
     HttpResponse::Ok()
         .content_type("text/html")
         .body(template.render().unwrap())
+}
+
+#[post("/echo")]
+async fn echo(req_body: String) -> impl Responder {
+    HttpResponse::Ok().body(req_body)
 }
 
 async fn not_found() -> impl Responder {
