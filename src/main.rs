@@ -34,6 +34,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .service(index)
+            .service(echo)
             .service(Files::new("/static", "./static"))
             .default_service(route().to(not_found))
     })
