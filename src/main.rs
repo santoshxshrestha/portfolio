@@ -22,6 +22,7 @@ async fn index() -> impl Responder {
 
 #[post("/echo")]
 async fn echo(req_body: String) -> impl Responder {
+    println!("Received request body: {}", req_body);
     HttpResponse::Ok().body(req_body)
 }
 
