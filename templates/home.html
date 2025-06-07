@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              glow: "glow 2s ease-in-out infinite alternate",
+              "slide-up": "slideUp 0.8s ease-out forwards",
+              "fade-in": "fadeIn 1s ease-out forwards",
+              "bounce-slow": "bounce 3s infinite",
+              typing:
+                "typing 3.5s steps(30, end), blink 0.75s step-end infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              glow: {
+                "0%": { boxShadow: "0 0 20px rgba(139, 92, 246, 0.5)" },
+                "100%": { boxShadow: "0 0 30px rgba(139, 92, 246, 0.8)" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(50px)", opacity: "0" },
+                "100%": { transform: "translateY(0px)", opacity: "1" },
+              },
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              typing: {
+                "0%": { width: "0" },
+                "100%": { width: "100%" },
+              },
+              blink: {
+                "0%, 50%": { borderColor: "transparent" },
+                "51%, 100%": { borderColor: "#f97316" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <title>Santosh Shrestha | Rustacean & Systems Engineer</title>
+  </head>
+
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white min-h-screen overflow-x-hidden"
+  >
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div
+        class="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"
+      ></div>
+      <div
+        class="absolute top-3/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"
+        style="animation-delay: 2s"
+      ></div>
+      <div
+        class="absolute bottom-1/4 left-1/3 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"
+        style="animation-delay: 4s"
+      ></div>
+    </div>
+
+    <!-- Header -->
+    <header
+      class="relative z-20 backdrop-blur-sm bg-white/5 border-b border-white/10 sticky top-0"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-lg">🦀</span>
+            </div>
+            <h1
+              class="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent"
+            >
+              Santosh Shrestha
+            </h1>
+          </div>
+          <nav class="hidden md:block">
+            <ul class="flex space-x-8">
+              <li>
+                <a
+                  href="/"
+                  class="text-orange-400 font-semibold relative group"
+                >
+                  Home
+                  <span
+                    class="absolute -bottom-1 left-0 w-full h-0.5 bg-orange-400"
+                  ></span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/projects"
+                  class="hover:text-purple-400 transition-colors duration-300 relative group"
+                >
+                  Projects
+                  <span
+                    class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-400 group-hover:w-full transition-all duration-300"
+                  ></span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  class="hover:text-blue-400 transition-colors duration-300 relative group"
+                >
+                  Contact
+                  <span
+                    class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"
+                  ></span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+          <ul class="space-y-2">
+            <li>
+              <a href="/" class="block py-2 text-orange-400 font-semibold"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/projects"
+                class="block py-2 hover:text-purple-400 transition-colors"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a
+                href="/contact"
+                class="block py-2 hover:text-blue-400 transition-colors"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative z-10">
+      <!-- Hero Section -->
+      <section class="min-h-screen flex items-center justify-center px-6 py-20">
+        <div class="text-center max-w-6xl mx-auto">
+          <!-- Typing Animation for Title -->
+          <div class="mb-8">
+            <div class="text-lg text-gray-400 mb-4 animate-fade-in">
+              👋 Hello, I'm
+            </div>
+            <h1
+              class="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-red-400 to-purple-400 bg-clip-text text-transparent animate-slide-up"
+            >
+              Santosh Shrestha
+            </h1>
+            <div class="text-2xl md:text-4xl text-gray-300 mb-8 font-mono">
+              <span
+                id="typing-text"
+                class="border-r-2 border-orange-500 pr-1"
+              ></span>
+            </div>
+            <p
+              class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed animate-slide-up"
+              style="animation-delay: 0.4s"
+            >
+              A passionate
+              <span class="text-orange-400 font-semibold"
+                >Rustacean in Training</span
+              >
+              and
+              <span class="text-purple-400 font-semibold"
+                >Systems Engineer</span
+              >
+              who loves crafting efficient solutions, customizing Linux
+              environments, and building powerful CLI tools.
+            </p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div
+            class="flex flex-col sm:flex-row gap-6 justify-center mb-12 animate-slide-up"
+            style="animation-delay: 0.6s"
+          >
+            <a
+              href="/projects"
+              class="group relative px-10 py-4 bg-gradient-to-r from-orange-600 to-red-600 rounded-xl font-semibold text-white overflow-hidden transform hover:scale-105 transition-all duration-300 animate-glow"
+            >
+              <span
+                class="relative z-10 flex items-center justify-center space-x-2"
+              >
+                <span>🦀</span>
+                <span>View My Projects</span>
+              </span>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-red-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              ></div>
+            </a>
+            <a
+              href="/contact"
+              class="px-10 py-4 border-2 border-purple-400 rounded-xl font-semibold text-purple-400 hover:bg-purple-400 hover:text-white transition-all duration-300 transform hover:scale-105"
+            >
+              Let's Connect
+            </a>
+          </div>
+
+          <!-- Tech Stack Icons -->
+          <div
+            class="flex justify-center space-x-8 text-4xl animate-fade-in"
+            style="animation-delay: 0.8s"
+          >
+            <div
+              class="text-orange-500 hover:scale-110 transition-transform cursor-pointer"
+              title="Rust"
+            >
+              🦀
+            </div>
+            <div
+              class="text-blue-400 hover:scale-110 transition-transform cursor-pointer"
+              title="C"
+            >
+              ⚡
+            </div>
+            <div
+              class="text-green-400 hover:scale-110 transition-transform cursor-pointer"
+              title="Neovim"
+            >
+              🌟
+            </div>
+            <div
+              class="text-purple-400 hover:scale-110 transition-transform cursor-pointer"
+              title="Linux"
+            >
+              🐧
+            </div>
+            <div
+              class="text-yellow-400 hover:scale-110 transition-transform cursor-pointer"
+              title="Terminal"
+            >
+              💻
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="py-20 px-6 bg-black/20 backdrop-blur-sm">
+        <div class="container mx-auto max-w-6xl">
+          <h2
+            class="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-orange-400 to-purple-400 bg-clip-text text-transparent"
+          >
+            About Me
+          </h2>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <p class="text-lg text-gray-300 leading-relaxed">
+                I'm a dedicated
+                <strong class="text-orange-400">Systems Engineer</strong>
+                passionate about low-level programming and efficient system
+                design. My journey spans from system programming in
+                <strong class="text-orange-400">Rust</strong> and
+                <strong class="text-blue-400">C</strong> to crafting powerful
+                automation scripts in
+                <strong class="text-green-400">Bash</strong> and
+                <strong class="text-purple-400">Lua</strong>.
+              </p>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                When I'm not coding, you'll find me customizing my
+                <strong class="text-blue-400">Arch Linux</strong> setup with
+                <strong class="text-purple-400">Hyprland</strong>, fine-tuning
+                my <strong class="text-green-400">Neovim</strong> configuration,
+                or exploring the depths of
+                <strong class="text-yellow-400">terminal workflows</strong>.
+              </p>
+              <div class="flex flex-wrap gap-3 pt-4">
+                <span
+                  class="px-4 py-2 bg-orange-500/20 text-orange-400 rounded-full text-sm font-medium"
+                  >Rust 🦀</span
+                >
+                <span
+                  class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium"
+                  >C Programming</span
+                >
+                <span
+                  class="px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm font-medium"
+                  >Neovim</span
+                >
+                <span
+                  class="px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-sm font-medium"
+                  >Linux</span
+                >
+                <span
+                  class="px-4 py-2 bg-yellow-500/20 text-yellow-400 rounded-full text-sm font-medium"
+                  >Actix Web</span
+                >
+                <span
+                  class="px-4 py-2 bg-pink-500/20 text-pink-400 rounded-full text-sm font-medium"
+                  >Askama</span
+                >
+              </div>
+            </div>
+
+            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+              <div class="flex items-center space-x-2 mb-4">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span class="text-gray-400 text-sm ml-2"
+                  >~/santosh/current_focus.rs</span
+                >
+              </div>
+              <pre
+                class="text-sm text-gray-300 font-mono overflow-x-auto"
+              ><code><span class="text-purple-400">use</span>
+                <span class="text-blue-400">std::collections::HashMap</span>;
+
+                <span class="text-purple-400">fn</span> <span class="text-yellow-400">current_focus</span>() -> <span
+                  class="text-blue-400">HashMap</span>&lt;<span class="text-green-400">&str</span>, <span
+                  class="text-blue-400">u8</span>&gt; {
+                <span class="text-purple-400">let mut</span> <span class="text-yellow-400">skills</span> = <span
+                  class="text-blue-400">HashMap::new</span>();
+
+                <span class="text-yellow-400">skills</span>.<span class="text-blue-400">insert</span>(<span
+                  class="text-green-400">"Vanilla Rust"</span>, <span class="text-orange-400">99</span>);
+                <span class="text-yellow-400">skills</span>.<span class="text-blue-400">insert</span>(<span
+                  class="text-green-400">"Async Rust"</span>, <span class="text-orange-400">29</span>);
+                <span class="text-yellow-400">skills</span>.<span class="text-blue-400">insert</span>(<span
+                  class="text-green-400">"C Programming"</span>, <span class="text-orange-400">62</span>);
+                <span class="text-yellow-400">skills</span>.<span class="text-blue-400">insert</span>(<span
+                  class="text-green-400">"Neovim"</span>, <span class="text-orange-400">93</span>);
+                <span class="text-yellow-400">skills</span>.<span class="text-blue-400">insert</span>(<span
+                  class="text-green-400">"Linux"</span>, <span class="text-orange-400">91</span>);
+
+                <span class="text-yellow-400">skills</span>
+                }</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Progress Section -->
+      <section class="py-20 px-6">
+        <div class="container mx-auto max-w-4xl">
+          <h2
+            class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+          >
+            Learning Progress
+          </h2>
+
+          <div class="space-y-6">
+            <div class="skill-bar">
+              <div class="flex justify-between mb-2">
+                <span class="text-orange-400 font-semibold"
+                  >Vanilla Rust 🦀</span
+                >
+                <span class="text-gray-400">99%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-3">
+                <div
+                  class="bg-gradient-to-r from-orange-500 to-red-500 h-3 rounded-full animate-pulse"
+                  style="width: 99%"
+                ></div>
+              </div>
+            </div>
+
+            <div class="skill-bar">
+              <div class="flex justify-between mb-2">
+                <span class="text-blue-400 font-semibold">C Programming</span>
+                <span class="text-gray-400">62%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-3">
+                <div
+                  class="bg-gradient-to-r from-blue-500 to-cyan-500 h-3 rounded-full"
+                  style="width: 62%"
+                ></div>
+              </div>
+            </div>
+
+            <div class="skill-bar">
+              <div class="flex justify-between mb-2">
+                <span class="text-green-400 font-semibold">Neovim</span>
+                <span class="text-gray-400">93%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-3">
+                <div
+                  class="bg-gradient-to-r from-green-500 to-emerald-500 h-3 rounded-full"
+                  style="width: 93%"
+                ></div>
+              </div>
+            </div>
+
+            <div class="skill-bar">
+              <div class="flex justify-between mb-2">
+                <span class="text-purple-400 font-semibold">Async Rust</span>
+                <span class="text-gray-400">29%</span>
+              </div>
+              <div class="w-full bg-gray-700 rounded-full h-3">
+                <div
+                  class="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full"
+                  style="width: 29%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="relative z-10 py-8 backdrop-blur-sm bg-white/5 border-t border-white/10"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <p class="text-gray-400 mb-4">
+          &copy; 2025 Santosh Shrestha. Built with
+          <span class="text-orange-400">Rust</span> +
+          <span class="text-blue-400">Actix Web</span> +
+          <span class="text-purple-400">Askama</span> +
+          <span class="text-green-400">Tailwind CSS</span>
+          <span class="text-red-500 animate-pulse ml-2">🦀</span>
+        </p>
+        <div class="flex justify-center space-x-6">
+          <a
+            href="https://github.com/santoshxshrestha"
+            class="text-gray-400 hover:text-white transition-colors"
+          >
+            <span class="sr-only">GitHub</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobileMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      // Typing animation
+      const texts = [
+        "Rustacean in Training 🦀",
+        "Linux Power User 🐧",
+        "Vim Ninja ⚡",
+        "Systems Engineer 💻",
+        "Command Line Architect 🛠️",
+      ];
+
+      let textIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const typingElement = document.getElementById("typing-text");
+
+      function typeWriter() {
+        const currentText = texts[textIndex];
+
+        if (isDeleting) {
+          typingElement.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typingElement.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentText.length) {
+          typeSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          typeSpeed = 500;
+        }
+
+        setTimeout(typeWriter, typeSpeed);
+      }
+
+      // Start typing animation when page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(typeWriter, 1000);
+      });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(".skill-bar");
+        animatedElements.forEach((element, index) => {
+          element.style.opacity = "0";
+          element.style.transform = "translateY(30px)";
+          element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+          observer.observe(element);
+        });
+      });
+    </script>
+  </body>
+</html>
