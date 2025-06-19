@@ -6,15 +6,11 @@ use askama::Template;
 
 #[derive(Template)]
 #[template(path = "home.html")]
-pub struct Home {
-    // rustacean: String,
-}
+pub struct Home;
 
 #[get("/")]
 pub async fn home() -> impl Responder {
-    let template = Home {
-        // rustacean: "Santosh".to_string(),
-    };
+    let template = Home;
     HttpResponse::Ok()
         .content_type("text/html")
         .body(template.render().unwrap())
