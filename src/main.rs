@@ -6,10 +6,7 @@ use askama::Template;
 use serde::Deserialize;
 use std::error::Error;
 use std::fs;
-use std::path;
 use std::path::Path;
-use std::path::PathBuf;
-use toml::Table;
 
 #[derive(Template)]
 #[template(path = "home.html")]
