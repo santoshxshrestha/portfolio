@@ -4,30 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/css/projects.css" />
-    <title>Document</title>
+    <title>Projects - Portfolio</title>
   </head>
-
   <body>
     <div class="container">
+      <a href="/" class="home-btn">
+        <i class="fas fa-home"></i>
+        Home
+      </a>
       <div class="header">
-          <h1 class="info">Projects</h1>
-        <div class="projects">
-          {% if projects.is_empty() %}
-          <p> No projects found. It might me some error while parsing</p>
-          {% else %}{% for project in projects %}
-          <div class="project">
-            <h2>{{ project.name }}</h2>
-            <p>{{ project. description }}</p>
-            <p>
-            <a href="{{ project.github_link }}">GitHub</a>
-            <a href="{{ project.readme_link }}">Read all</a>
-            </p>
-          </div>
-          {% endfor %}
-          {% endif %}
+        <h1 class="info">Projects</h1>
+      </div>
 
+      <div class="projects">
+        {% if projects.is_empty() %}
+        <div class="no-projects">
+          <p>No projects found. It might be some error while parsing.</p>
         </div>
-
+        {% else %}
+        {% for project in projects %}
+        <div class="project">
+          <div class="project-content">
+            <h2>{{ project.name }}</h2>
+            <p>{{ project.description }}</p>
+          </div>
+          <div class="project-links">
+            <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            <a href="{{ project.readme_link }}" target="_blank" rel="noopener noreferrer">
+              Read More
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
       </div>
     </div>
   </body>

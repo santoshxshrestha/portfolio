@@ -5,12 +5,9 @@
 }
 
 @keyframes gradientShift {
-
-    0%,
-    100% {
+    0%, 100% {
         background-position: 0% 50%;
     }
-
     50% {
         background-position: 100% 50%;
     }
@@ -21,7 +18,6 @@
         opacity: 0;
         transform: translateY(-30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -33,7 +29,6 @@
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -45,7 +40,6 @@
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -57,7 +51,6 @@
         opacity: 0;
         transform: translateX(30px);
     }
-
     to {
         opacity: 1;
         transform: translateX(0);
@@ -65,25 +58,21 @@
 }
 
 body {
-    font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     line-height: 1.6;
     color: #e2e8f0;
-    background: linear-gradient(135deg,
-    #0f0f23 0%,
-    #1a1a2e 50%,
-    #16213e 100%);
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
     min-height: 100vh;
+    padding: 20px 0;
 }
 
 .container {
-    max-width: 99%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-    min-height: 100vh;
+    padding: 40px 20px;
+    min-height: calc(100vh - 40px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.3);
     border-radius: 20px;
@@ -92,17 +81,43 @@ body {
     animation: fadeInUp 1s ease-out;
 }
 
+.home-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.home-btn:hover {
+    background: rgba(187, 134, 252, 0.2);
+    border-color: rgba(187, 134, 252, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(187, 134, 252, 0.3);
+    color: #fff;
+}
+
 .header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     animation: slideInDown 1s ease-out 0.2s both;
 }
 
-
 .info {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 300;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     letter-spacing: -0.02em;
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
     background-size: 200% 200%;
@@ -111,32 +126,147 @@ body {
     text-shadow: none;
     animation: gradientShift 3s ease-in-out infinite;
 }
-.projects{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.3);
-    /* border-radius: 20px; */
-    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); */
-    /* border: 1px solid rgba(255, 255, 255, 0.1); */
-    animation: fadeInUp 1s ease-out;
-    
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    flex-grow: 1;
 }
 
 .project {
-    height: 20px;
-    margin: 0 auto;
-    padding: 0 20px;
-    min-height: 20vh;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    backdrop-filter: blur(15px);
     background: rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: fadeInUp 1s ease-out;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+}
+
+
+.project:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+.project h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    background-clip: text;
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+.project:hover h2 {
+    transform: translateX(5px);
+}
+
+.project-content {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.project p {
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: #e2e8f0;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid transparent;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+
+.project-links a:hover {
+    background: rgba(187, 134, 252, 0.2);
+    border-color: rgba(187, 134, 252, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(187, 134, 252, 0.3);
+    color: #fff;
+}
+
+.project-links a:hover::before {
+    left: 100%;
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+        margin: 10px;
+        min-height: calc(100vh - 20px);
+    }
+
+    .home-btn {
+        top: 20px;
+        left: 20px;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project {
+        padding: 1.5rem;
+        min-height: 200px;
+    }
+
+    .project-links {
+        flex-direction: column;
+    }
+
+    .project-links a {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .info {
+        font-size: 2.5rem;
+    }
+
+    .project {
+        padding: 1.25rem;
+    }
+
+    .project h2 {
+        font-size: 1.3rem;
+    }
 }
 
