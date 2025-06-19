@@ -45,13 +45,13 @@ pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
 }
 
 #[get("/projects")]
-pub async fn projects() -> impl Responder {
-    let path = Path::new("data/projects.toml");
-    let template = parsing_toml(&path).unwrap();
+pub async fn projects() -> Result<impl Responder, actix_web::Error> {
+    let template = parsing_toml(&Path::new("data/projects.toml"))
+        .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
 
-    HttpResponse::Ok()
+    Ok(HttpResponse::Ok()
         .content_type("text/html")
-        .body(template.render().unwrap())
+        .body(template.render().unwrap()))
 }
 
 #[actix_web::main]
