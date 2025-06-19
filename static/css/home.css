@@ -62,3 +62,31 @@ body {
         transform: translateY(0);
     }
 }
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease-in-out infinite;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
