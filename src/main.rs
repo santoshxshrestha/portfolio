@@ -1,8 +1,16 @@
+#![allow(unused)]
 use actix_files::Files;
 use actix_web::App;
 use actix_web::HttpServer;
 use actix_web::{HttpResponse, Responder, get};
 use askama::Template;
+use serde::Deserialize;
+use std::error::Error;
+use std::fs;
+use std::path;
+use std::path::Path;
+use std::path::PathBuf;
+use toml::Table;
 
 #[derive(Template)]
 #[template(path = "home.html")]
@@ -16,13 +24,31 @@ pub async fn home() -> impl Responder {
         .body(template.render().unwrap())
 }
 
-#[derive(Template)]
+#[derive(Template, Deserialize, Debug)]
 #[template(path = "projects.html")]
-pub struct Projects;
+pub struct ProjectList {
+    projects: Vec<Project>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Project {
+    name: String,
+    description: String,
+    github_link: String,
+    readme_link: String,
+}
+
+pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
+    let toml_str = fs::read_to_string(path)?;
+    let data: ProjectList = toml::from_str(&toml_str)?;
+    Ok(data)
+}
 
 #[get("/projects")]
 pub async fn projects() -> impl Responder {
-    let template = Projects;
+    let path = Path::new("data/projects.toml");
+    let template = parsing_toml(&path).unwrap();
+
     HttpResponse::Ok()
         .content_type("text/html")
         .body(template.render().unwrap())
