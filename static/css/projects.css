@@ -2,6 +2,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: black;
+}
+
+body {
+    font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    color: #e2e8f0;
+    background: linear-gradient(135deg,
+    #0f0f23 0%,
+    #1a1a2e 50%,
+    #16213e 100%);
+    min-height: 100vh;
 }
 
