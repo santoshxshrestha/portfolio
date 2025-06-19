@@ -92,4 +92,22 @@ body {
     animation: fadeInUp 1s ease-out;
 }
 
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: slideInDown 1s ease-out 0.2s both;
+}
 
+
+.info {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
+    background-size: 200% 200%;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+    animation: gradientShift 3s ease-in-out infinite;
+}
