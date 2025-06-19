@@ -222,6 +222,7 @@ body {
 .project-links a:hover::before {
     left: 100%;
 }
+
 @media (max-width: 768px) {
     .container {
         padding: 20px 15px;
@@ -257,7 +258,17 @@ body {
 }
 
 @media (max-width: 480px) {
+    .header{
+        animation: none;
+    }
+
+    .home-btn{
+        top: 0px;
+        left: 0px;
+    }
+
     .info {
+        animation: none;
         font-size: 2.5rem;
     }
 
@@ -268,5 +279,19 @@ body {
     .project h2 {
         font-size: 1.3rem;
     }
-}
 
+    .project:hover {
+        transform:none;
+        box-shadow: none;
+        border-color:none;
+        background: none;
+    }
+
+    .home-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    .project-links:hover{
+        left: 0;
+    }
+}
