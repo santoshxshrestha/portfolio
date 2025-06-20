@@ -90,7 +90,7 @@ pub async fn projects() -> Result<impl Responder, actix_web::Error> {
                 .projects
                 .iter()
                 .find(|project| repo.name == project.name)
-                .map(|_| (repo))
+                .map(|_| repo)
         })
         .collect();
 
