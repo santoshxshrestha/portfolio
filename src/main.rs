@@ -79,7 +79,9 @@ pub async fn get_project() -> Result<Vec<RepoStats>, reqwest::Error> {
 
 #[get("/projects")]
 pub async fn projects() -> Result<impl Responder, actix_web::Error> {
-    let response = get_project().await.unwrap();
+    let response = get_project()
+        .await
+        .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
     let project_list = parsing_toml(&Path::new("data/projects.toml")).unwrap();
     let matched_projects: Vec<_> = response
         .into_iter()
