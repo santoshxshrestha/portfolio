@@ -26,15 +26,12 @@ pub async fn home() -> impl Responder {
 #[derive(Template, Deserialize, Debug)]
 #[template(path = "projects.html")]
 pub struct ProjectList {
-    projects: Vec<Project>,
+    projects: Vec<RepoStats>,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct Project {
     name: String,
-    description: String,
-    github_link: String,
-    readme_link: String,
 }
 
 pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
@@ -76,6 +73,11 @@ pub async fn get_project() -> Result<Vec<RepoStats>, reqwest::Error> {
 
 #[get("/projects")]
 pub async fn projects() -> Result<impl Responder, actix_web::Error> {
+    let response = get_project().await.unwrap();
+    if response.iter().name
+
+    let data = parsing_toml(&Path::new("data/projects.toml"));
+
     let template = parsing_toml(&Path::new("data/projects.toml"))
         .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
 

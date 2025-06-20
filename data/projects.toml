@@ -1,24 +1,11 @@
 [[projects]]
 name = "rusty-notes"
-description = "A terminal-based note-taking application built in Rust with local file storage and tag-based search."
-github_link = "https://github.com/santoshxshrestha/rusty-notes"
-readme_link = "https://github.com/santoshxshrestha/rusty-notes/blob/main/README.md"
 
 [[projects]]
 name = "tailwindfolio"
-description = "A modern, minimal developer portfolio built with Tailwind CSS and HTML. Fully responsive and easy to customize."
-github_link = "https://github.com/santoshxshrestha/tailwindfolio"
-readme_link = "https://github.com/santoshxshrestha/tailwindfolio/blob/main/README.md"
 
 [[projects]]
 name = "blogify"
-description = "A simple blog system built with Actix Web and Askama templating. Supports Markdown rendering and multi-user login."
-github_link = "https://github.com/santoshxshrestha/blogify"
-readme_link = "https://github.com/santoshxshrestha/blogify/blob/main/README.md"
 
 [[projects]]
 name = "hyprland-dotfiles"
-description = "My custom dotfiles for Arch Linux with Hyprland, featuring zsh, tmux, and Neovim setup using GNU Stow."
-github_link = "https://github.com/santoshxshrestha/hyprland-dotfiles"
-readme_link = "https://github.com/santoshxshrestha/hyprland-dotfiles/blob/main/README.md"
-
