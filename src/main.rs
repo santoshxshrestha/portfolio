@@ -1,9 +1,11 @@
+#![allow(unused)]
 use actix_files::Files;
 use actix_web::App;
 use actix_web::HttpServer;
 use actix_web::{HttpResponse, Responder, get};
 use askama::Template;
 use dotenv::dotenv;
+use reqwest::{self, Client};
 use serde::Deserialize;
 use std::error::Error;
 use std::fs;
@@ -15,9 +17,6 @@ pub struct Home;
 
 #[get("/")]
 pub async fn home() -> impl Responder {
-    // dotenv().ok();
-    // let mailcoach_api_token =
-    //     std::env::var("GITHUB_TOKEN").expect("MAILCOACH_API_TOKEN must be set.");
     let template = Home;
     HttpResponse::Ok()
         .content_type("text/html")
@@ -42,6 +41,35 @@ pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
     let toml_str = fs::read_to_string(path)?;
     let data: ProjectList = toml::from_str(&toml_str)?;
     Ok(data)
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Repo {
+    pub name: String,
+    pub html_url: String,
+    pub description: Option<String>, // some repos may not have descriptions
+}
+
+pub async fn get_project() -> Result<Vec<Repo>, reqwest::Error> {
+    let username = "santoshxshrestha";
+    let url = format!(
+        "https://api.github.com/users/{}/repos?per_page=100",
+        username
+    );
+
+    dotenv().ok();
+    let token = std::env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN must be set.");
+
+    let client = reqwest::Client::new();
+    let response = client
+        .get(&url)
+        .header("User-Agent", "rust-script")
+        .header("Authorization", format!("token {}", token))
+        .send()
+        .await?
+        .json::<Vec<Repo>>()
+        .await?;
+    Ok(response)
 }
 
 #[get("/projects")]
