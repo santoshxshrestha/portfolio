@@ -27,7 +27,7 @@ pub async fn home() -> impl Responder {
 #[derive(Template, Deserialize, Debug)]
 #[template(path = "projects.html")]
 pub struct Project {
-    repo: Vec<RepoStats>,
+    repos: Vec<RepoStats>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -49,7 +49,7 @@ pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
 #[derive(Debug, Deserialize, std::clone::Clone)]
 pub struct RepoStats {
     pub name: String,
-    pub description: Option<String>, // some repos may not have descriptions
+    pub description: String, // some repos may not have descriptions
     pub html_url: String,
     pub updated_at: String,
     pub stargazers_count: String,
@@ -79,20 +79,22 @@ pub async fn get_project() -> Result<Vec<RepoStats>, reqwest::Error> {
 
 #[get("/projects")]
 pub async fn projects() -> Result<impl Responder, actix_web::Error> {
-    let mut for_template = Project { repo: Vec::new() };
     let response = get_project().await.unwrap();
-    let names = parsing_toml(&Path::new("data/projects.toml"))
-        .unwrap()
-        .projects;
-    for repo in response.iter().clone() {
-        for name in names {
-            if (repo.name == name.name) {
-                for_template.repo.push(repo);
-            }
-        }
-    }
+    let project_list = parsing_toml(&Path::new("data/projects.toml")).unwrap();
+    let matched_projects: Vec<_> = response
+        .into_iter()
+        .filter_map(|repo| {
+            project_list
+                .projects
+                .iter()
+                .find(|project| repo.name == project.name)
+                .map(|project| (repo))
+        })
+        .collect();
 
-    let template = for_template;
+    let template = Project {
+        repos: matched_projects,
+    };
 
     Ok(HttpResponse::Ok()
         .content_type("text/html")
