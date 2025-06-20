@@ -44,7 +44,7 @@ pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Repo {
+pub struct RepoStats {
     pub name: String,
     pub description: Option<String>, // some repos may not have descriptions
     pub html_url: String,
@@ -52,7 +52,7 @@ pub struct Repo {
     pub stargazers_count: String,
 }
 
-pub async fn get_project() -> Result<Vec<Repo>, reqwest::Error> {
+pub async fn get_project() -> Result<Vec<RepoStats>, reqwest::Error> {
     let username = "santoshxshrestha";
     let url = format!(
         "https://api.github.com/users/{}/repos?per_page=100",
@@ -69,7 +69,7 @@ pub async fn get_project() -> Result<Vec<Repo>, reqwest::Error> {
         .header("Authorization", format!("token {}", token))
         .send()
         .await?
-        .json::<Vec<Repo>>()
+        .json::<Vec<RepoStats>>()
         .await?;
     Ok(response)
 }
