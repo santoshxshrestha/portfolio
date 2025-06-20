@@ -21,23 +21,28 @@
       </div>
 
       <div class="projects">
-        {% if projects.is_empty() %}
+        {% if repos.is_empty() %}
         <div class="no-projects">
           <p>No projects found. It might be some error while parsing.</p>
         </div>
         {% else %}
-        {% for project in projects %}
+        {% for repo in repos %}
         <div class="project">
           <div class="project-content">
-            <h2>{{ project.name }}</h2>
-            <p>{{ project.description }}</p>
+            <h2>{{ repo.name }}</h2>
+            {% match repo.description %}
+            {% when Some with (desc) %}
+            <p>{{ desc }}</p>
+            {% when None%}
+            <p>No description available</p>
+            {% endmatch %}
           </div>
           <div class="project-links">
-            <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer">
+            <a href="{{ repo.html_url }}" target="_blank" rel="noopener noreferrer">
           <i class="fa-brands fa-github"></i>
               GitHub
             </a>
-            <a href="{{ project.readme_link }}" target="_blank" rel="noopener noreferrer">
+            <a href="{{  repo.html_url }}" target="_blank" rel="noopener noreferrer">
               Read More
             </a>
           </div>
