@@ -62,7 +62,7 @@ async fn main() -> std::io::Result<()> {
             .service(projects)
             .service(Files::new("/static", "./static").show_files_listing())
     })
-    .bind(("127.0.0.1", 8081))?
+    .bind(("127.0.0.1", 8080))?
     .run()
     .await
 }
