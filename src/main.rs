@@ -7,6 +7,7 @@ use askama::Template;
 use dotenv::dotenv;
 use reqwest::{self, Client};
 use serde::Deserialize;
+use std::clone;
 use std::error::Error;
 use std::fs;
 use std::path::Path;
@@ -25,12 +26,17 @@ pub async fn home() -> impl Responder {
 
 #[derive(Template, Deserialize, Debug)]
 #[template(path = "projects.html")]
+pub struct Project {
+    repo: Vec<RepoStats>,
+}
+
+#[derive(Deserialize, Debug)]
 pub struct ProjectList {
-    projects: Vec<RepoStats>,
+    projects: Vec<ProjectName>,
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Project {
+pub struct ProjectName {
     name: String,
 }
 
@@ -40,7 +46,7 @@ pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
     Ok(data)
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, std::clone::Clone)]
 pub struct RepoStats {
     pub name: String,
     pub description: Option<String>, // some repos may not have descriptions
@@ -73,13 +79,20 @@ pub async fn get_project() -> Result<Vec<RepoStats>, reqwest::Error> {
 
 #[get("/projects")]
 pub async fn projects() -> Result<impl Responder, actix_web::Error> {
+    let mut for_template = Project { repo: Vec::new() };
     let response = get_project().await.unwrap();
-    if response.iter().name
+    let names = parsing_toml(&Path::new("data/projects.toml"))
+        .unwrap()
+        .projects;
+    for repo in response.iter().clone() {
+        for name in names {
+            if (repo.name == name.name) {
+                for_template.repo.push(repo);
+            }
+        }
+    }
 
-    let data = parsing_toml(&Path::new("data/projects.toml"));
-
-    let template = parsing_toml(&Path::new("data/projects.toml"))
-        .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
+    let template = for_template;
 
     Ok(HttpResponse::Ok()
         .content_type("text/html")
