@@ -46,8 +46,10 @@ pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
 #[derive(Debug, Deserialize)]
 pub struct Repo {
     pub name: String,
-    pub html_url: String,
     pub description: Option<String>, // some repos may not have descriptions
+    pub html_url: String,
+    pub updated_at: String,
+    pub stargazers_count: String,
 }
 
 pub async fn get_project() -> Result<Vec<Repo>, reqwest::Error> {
