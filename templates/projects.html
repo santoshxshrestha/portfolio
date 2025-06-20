@@ -30,7 +30,12 @@
         <div class="project">
           <div class="project-content">
             <h2>{{ repo.name }}</h2>
-            <p>{{ repo.description }}</p>
+            {% match repo.description %}
+            {% when Some with (desc) %}
+            <p>{{ desc }}</p>
+            {% when None%}
+            <p>No description available</p>
+            {% endmatch %}
           </div>
           <div class="project-links">
             <a href="{{ repo.html_url }}" target="_blank" rel="noopener noreferrer">

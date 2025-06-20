@@ -49,10 +49,10 @@ pub fn parsing_toml(path: &Path) -> Result<ProjectList, Box<dyn Error>> {
 #[derive(Debug, Deserialize, std::clone::Clone)]
 pub struct RepoStats {
     pub name: String,
-    pub description: String, // some repos may not have descriptions
+    pub description: Option<String>, // some repos may not have descriptions
     pub html_url: String,
     pub updated_at: String,
-    pub stargazers_count: String,
+    pub stargazers_count: i32,
 }
 
 pub async fn get_project() -> Result<Vec<RepoStats>, reqwest::Error> {
@@ -82,7 +82,9 @@ pub async fn projects() -> Result<impl Responder, actix_web::Error> {
     let response = get_project()
         .await
         .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
-    let project_list = parsing_toml(&Path::new("data/projects.toml")).unwrap();
+    let project_list = parsing_toml(&Path::new("data/projects.toml"))
+        .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
+    ();
     let matched_projects: Vec<_> = response
         .into_iter()
         .filter_map(|repo| {
