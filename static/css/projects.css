@@ -365,4 +365,7 @@ body {
     .project-links:hover{
         left: 0;
     }
+    .container{
+        animation: none;
+    }
 }
