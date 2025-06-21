@@ -223,6 +223,77 @@ body {
     left: 100%;
 }
 
+.commits-section {
+    padding: 2rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: solid 1px #cbd5e1;
+}
+
+.commits-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
+    background-size: 200% 200%;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+.commits-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.commit-item {
+    border-bottom: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    position: relative;
+    color: #cbd5e1;
+    overflow: hidden;
+}
+
+.commit-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: #6c757d;
+}
+
+.commit-item:last-child {
+    margin-bottom: 0;
+}
+
+.commit-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+}
+
+.no-commits {
+    text-align: center;
+    font-style: italic;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px dashed #cbd5e1;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 20px 15px;

@@ -39,20 +39,42 @@
           </div>
           <div class="project-links">
             <a href="{{ repo.html_url }}" target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-github"></i>
+              <i class="fa-brands fa-github"></i>
               GitHub
               | 
-            <i class="fa-solid fa-star"></i>
-            {{ repo.stargazers_count }} 
+              <i class="fa-solid fa-star"></i>
+              {{ repo.stargazers_count }} 
             </a>
             <a href="{{  repo.html_url }}" target="_blank" rel="noopener noreferrer">
               Read More
             </a>
           </div>
+
+        <div class="commits-section">
+          <div class="commits-title">
+            <i class="fas fa-code-branch"></i>
+            Recent Commits
+          </div>
+          {% if repo.commits.is_empty() %}
+          <div class="no-commits">
+            <i class="fas fa-info-circle"></i>
+            No recent commits found
+          </div>
+          {% else %}
+          <div class="commits-list">
+            {% for commit in repo.commits %}
+            <div class="commit-item">
+              {{ commit.message }}
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
         </div>
-        {% endfor %}
-        {% endif %}
       </div>
+        </div>
+      {% endfor %}
+      {% endif %}
+    </div>
     </div>
   </body>
 </html>
