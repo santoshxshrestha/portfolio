@@ -1,54 +1,56 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/projects.css" />
-    <link rel="icon" href="../static/images/favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-                           integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-                           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Projects - Portfolio</title>
-  </head>
-  <body>
-    <div class="container">
-      <a href="/" class="home-btn">
-        <i class="fas fa-home"></i>
-        Home
-      </a>
-      <div class="header">
-        <h1 class="info">Projects</h1>
-      </div>
 
-      <div class="projects">
-        {% if repos.is_empty() %}
-        <div class="no-projects">
-          <p>No projects found. It might be some error while parsing.</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/projects.css" />
+  <link rel="icon" href="../static/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Projects - Portfolio</title>
+</head>
+
+<body>
+  <div class="container">
+    <a href="/" class="home-btn">
+      <i class="fas fa-home"></i>
+      Home
+    </a>
+    <div class="header">
+      <h1 class="info">Projects</h1>
+    </div>
+
+    <div class="projects">
+      {% if repos.is_empty() %}
+      <div class="no-projects">
+        <p>No projects found. It might be some error while parsing.</p>
+      </div>
+      {% else %}
+      {% for repo in repos %}
+      <div class="project">
+        <div class="project-content">
+          <h2>{{ repo.name }}</h2>
+          {% match repo.description %}
+          {% when Some with (desc) %}
+          <p>{{ desc }}</p>
+          {% when None%}
+          <p>No description available</p>
+          {% endmatch %}
         </div>
-        {% else %}
-        {% for repo in repos %}
-        <div class="project">
-          <div class="project-content">
-            <h2>{{ repo.name }}</h2>
-            {% match repo.description %}
-            {% when Some with (desc) %}
-            <p>{{ desc }}</p>
-            {% when None%}
-            <p>No description available</p>
-            {% endmatch %}
-          </div>
-          <div class="project-links">
-            <a href="{{ repo.html_url }}" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-github"></i>
-              GitHub
-              | 
-              <i class="fa-solid fa-star"></i>
-              {{ repo.stargazers_count }} 
-            </a>
-            <a href="{{  repo.html_url }}" target="_blank" rel="noopener noreferrer">
-              Read More
-            </a>
-          </div>
+        <div class="project-links">
+          <a href="{{ repo.html_url }}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i>
+            GitHub
+            |
+            <i class="fa-solid fa-star"></i>
+            {{ repo.stargazers_count }}
+          </a>
+          <a href="{{  repo.html_url }}" target="_blank" rel="noopener noreferrer">
+            Read More
+          </a>
+        </div>
 
         <div class="commits-section">
           <div class="commits-title">
@@ -71,10 +73,11 @@
           {% endif %}
         </div>
       </div>
-        </div>
       {% endfor %}
       {% endif %}
     </div>
-    </div>
-  </body>
+  </div>
+  </div>
+</body>
+
 </html>

@@ -1,2 +1,17 @@
 [[projects]]
 name = "voxlan"
+
+[[projects]]
+name = "nexish"
+
+[[projects]]
+name = "portfolio"
+
+[[projects]]
+name = "unix_perms"
+
+[[projects]]
+name = "nexish"
+
+[[projects]]
+name = "tmux-session-manager"
