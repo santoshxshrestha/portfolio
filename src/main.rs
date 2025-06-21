@@ -25,7 +25,32 @@ pub async fn home() -> impl Responder {
 #[derive(Template, Deserialize, Debug)]
 #[template(path = "projects.html")]
 pub struct Project {
-    repos: Vec<RepoStats>,
+    repos: Vec<Repo>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Repo {
+    pub name: String,
+    pub description: Option<String>, // some repos may not have descriptions
+    pub html_url: String,
+    pub updated_at: String,
+    pub stargazers_count: i32,
+    pub commits: Vec<Commit>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct Commit {
+    pub message: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct GitHubCommit {
+    pub commit: CommitDetails,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct CommitDetails {
+    pub message: String,
 }
 
 #[derive(Deserialize, Debug)]
@@ -75,6 +100,70 @@ pub async fn get_project() -> Result<Vec<RepoStats>, reqwest::Error> {
     Ok(response)
 }
 
+pub async fn get_repo(matched_projects: Vec<RepoStats>) -> Result<Vec<Repo>, reqwest::Error> {
+    let username = "santoshxshrestha";
+    let mut repos: Vec<Repo> = Vec::new();
+
+    dotenv().ok();
+    let token = std::env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN must be set.");
+
+    for project in matched_projects {
+        let url = format!(
+            "https://api.github.com/repos/{}/{}/commits?per_page=5",
+            username, project.name
+        );
+
+        let client = reqwest::Client::new();
+
+        let github_commits_result = client
+            .get(&url)
+            .header("User-Agent", "rust-script")
+            .header("Authorization", format!("token {}", token))
+            .send()
+            .await;
+
+        let commits = match github_commits_result {
+            Ok(response) => {
+                if response.status().is_success() {
+                    match response.json::<Vec<GitHubCommit>>().await {
+                        Ok(github_commits) => github_commits
+                            .into_iter()
+                            .map(|git_hub_commit| Commit {
+                                message: git_hub_commit.commit.message,
+                            })
+                            .collect(),
+                        Err(_) => {
+                            println!("Failed to parse commits for repo: {}", project.name);
+                            Vec::new()
+                        }
+                    }
+                } else {
+                    println!(
+                        "API request failed for repo: {} with status: {}",
+                        project.name,
+                        response.status()
+                    );
+                    Vec::new()
+                }
+            }
+            Err(e) => {
+                println!("Network error for repo {}: {}", project.name, e);
+                Vec::new()
+            }
+        };
+
+        repos.push(Repo {
+            name: project.name,
+            description: project.description,
+            html_url: project.html_url,
+            updated_at: project.updated_at,
+            stargazers_count: project.stargazers_count,
+            commits,
+        });
+    }
+    Ok(repos)
+}
+
 #[get("/projects")]
 pub async fn projects() -> Result<impl Responder, actix_web::Error> {
     let response = get_project()
@@ -94,9 +183,11 @@ pub async fn projects() -> Result<impl Responder, actix_web::Error> {
         })
         .collect();
 
-    let template = Project {
-        repos: matched_projects,
-    };
+    let repo = get_repo(matched_projects)
+        .await
+        .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
+
+    let template = Project { repos: repo };
 
     Ok(HttpResponse::Ok()
         .content_type("text/html")
