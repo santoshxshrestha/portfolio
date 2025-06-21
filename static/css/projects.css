@@ -224,9 +224,12 @@ body {
 }
 
 .commits-section {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 2px solid #e0e0e0;
+    padding: 2rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: solid 1px #cbd5e1;
 }
 
 .commits-title {
@@ -236,6 +239,12 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
+    background-size: 200% 200%;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+    animation: gradientShift 3s ease-in-out infinite;
 }
 
 .commits-list {
@@ -246,7 +255,7 @@ body {
 }
 
 .commit-item {
-    border: 1px solid #e9ecef;
+    border-top: 1px solid #cbd5e1;
     border-radius: 6px;
     padding: 12px 15px;
     margin-bottom: 8px;
@@ -254,6 +263,7 @@ body {
     line-height: 1.4;
     transition: all 0.2s ease;
     position: relative;
+    color: #cbd5e1;
     overflow: hidden;
 }
 
@@ -283,23 +293,6 @@ body {
     border-radius: 6px;
     border: 1px dashed #dee2e6;
 }
-
-.commits-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-.commits-list::-webkit-scrollbar-track {
-    border-radius: 3px;
-}
-
-.commits-list::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-}
-
-.commits-list::-webkit-scrollbar-thumb:hover {
-    border-radius: 9px;
-}
-
 
 @media (max-width: 768px) {
     .container {
