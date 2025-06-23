@@ -7,6 +7,7 @@ class TerminalTyper {
         this.infoLines = document.querySelectorAll(".info-line");
 
         this.command = "mefetch";
+        this.commandText.textContent = "";
         setTimeout(() => {
             this.startTyping();
         }, 2000);
@@ -26,12 +27,12 @@ class TerminalTyper {
     async showOutput() {
         this.output.classList.remove("hidden");
         this.output.classList.add("typing");
-        // Reveal each info line one by one
+
         for (let line of this.infoLines) {
-            line.classList.remove("hidden-line");
+            line.classList.remove("hidden");
             await this.delay(200);
         }
-        // Show final prompt after a pause
+
         setTimeout(() => {
             this.finalPrompt.classList.remove("hidden");
         }, 500);
