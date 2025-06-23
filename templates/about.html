@@ -1,19 +1,39 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Santosh - About</title>
-    <link rel="stylesheet" href="../static/css/about.css" />
-    <link rel="icon" href="../static/images/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
 
-  <body></body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santosh - About</title>
+  <link rel="stylesheet" href="../static/css/about.css" />
+  <link rel="icon" href="../static/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="terminal-buttons">
+          <div class="btn close"></div>
+          <div class="btn minimize"></div>
+          <div class="btn maximize"></div>
+        </div>
+      </div>
+
+      <div class="terminal-content">
+        <div class="prompt-line">
+          <span class="user">santosh</span><span class="at">@</span><span class="host">archiso</span><span
+            class="path">:~</span><span class="dollar">$</span>
+          <span class="command" id="command-text"></span>
+          <span class="cursor" id="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</body>
+
 </html>
