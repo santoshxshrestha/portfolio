@@ -1,107 +1,100 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Santosh - About</title>
-    <link rel="stylesheet" href="../static/css/about.css" />
-    <link rel="icon" href="../static/images/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
 
-  <body>
-    <div class="container">
-      <h1 class="name">About</h1>
-      <div class="header">
-        <div class="terminal-buttons">
-          <div class="btn close">
-            <a href="/">
-              <i class="fa-solid fa-xmark"></i>
-            </a>
-          </div>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santosh - About</title>
+  <link rel="stylesheet" href="../static/css/about.css" />
+  <link rel="icon" href="../static/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-      <div class="terminal-content">
-        <div class="prompt-line">
-          <span class="user">santosh</span><span class="at">@</span>
-          <span class="host">archiso</span><span class="path">:~</span>
-          <span class="dollar"> $</span>
-          <span class="command" id="command-text"></span>
-          <span class="cursor" id="cursor"></span>
-        </div>
-
-        <div class="output-hidden hidden">
-          <div class="info-line hidden">
-            <span class="label">Name:</span>
-            <span class="value">Santosh Shrestha</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Role:</span> <span class="value">wonderer</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Location:</span>
-            <span class="value">Butwal, Nepal</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Languages:</span>
-            <span class="value">JavaScript, Rust, C, C++, Bash, Lua</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Frontend:</span>
-            <span class="value">HTML/CSS, Tailwind, Askama</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Backend:</span>
-            <span class="value">Rust, Actix-web, PostgreSQL</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">DevOps:</span>
-            <span class="value">Docker, AWS, Linux, Git</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Interests:</span>
-            <span class="value"
-              >Open Source, System Design, little bit of web</span
-            >
-          </div>
-          <div class="info-line hidden">
-            <span class="label">GitHub:</span>
-            <span class="value highlight">github.com/santoshxshrestha</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Website:</span>
-            <span class="value highlight"
-              >https://santoshxshrestha.onrender.com/</span
-            >
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Email:</span>
-            <span class="value highlight">santoshxshrestha@gmail.com</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Discord:</span>
-            <span class="value highlight">santoshxshrestha</span>
-          </div>
-          <div class="info-line hidden">
-            <span class="label">Reddit:</span>
-            <span class="value highlight">santoshxshrestha</span>
-          </div>
-        </div>
-        <div class="prompt-line hidden" id="final-prompt">
-          <span class="user">santosh</span><span class="at">@</span>
-          <span class="host">archiso</span><span class="path">:~</span>
-          <span class="dollar"> $</span>
-          <span class="cursor"></span>
-        </div>
+<body>
+  <div class="container">
+    <div class="terminal-buttons">
+      <div class="btn close">
+        <a href="/">
+          <i class="fa-solid fa-xmark"></i>
+        </a>
       </div>
     </div>
-    <script src="../static/js/terminal.js"></script>
-  </body>
+    <h1 class="name">About</h1>
+    <div class="header"></div>
+
+    <div class="terminal-content">
+      <div class="prompt-line">
+        <span class="user">santosh</span><span class="at">@</span>
+        <span class="host">archiso</span><span class="path">:~</span>
+        <span class="dollar"> $</span>
+        <span class="command" id="command-text"></span>
+        <span class="cursor" id="cursor"></span>
+      </div>
+
+      <div class="output-hidden hidden">
+        <div class="info-line hidden">
+          <span class="label">Name:</span>
+          <span class="value">Santosh Shrestha</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Role:</span> <span class="value">wonderer</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Location:</span>
+          <span class="value">Butwal, Nepal</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Languages:</span>
+          <span class="value">JavaScript, Rust, C, C++, Bash, Lua</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Frontend:</span>
+          <span class="value">HTML/CSS, Tailwind, Askama</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Backend:</span>
+          <span class="value">Rust, Actix-web, PostgreSQL</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">DevOps:</span>
+          <span class="value">Docker, AWS, Linux, Git</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Interests:</span>
+          <span class="value">Open Source, System Design, little bit of web</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">GitHub:</span>
+          <span class="value highlight">github.com/santoshxshrestha</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Website:</span>
+          <span class="value highlight">https://santoshxshrestha.onrender.com/</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Email:</span>
+          <span class="value highlight">santoshxshrestha@gmail.com</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Discord:</span>
+          <span class="value highlight">santoshxshrestha</span>
+        </div>
+        <div class="info-line hidden">
+          <span class="label">Reddit:</span>
+          <span class="value highlight">santoshxshrestha</span>
+        </div>
+      </div>
+      <div class="prompt-line hidden" id="final-prompt">
+        <span class="user">santosh</span><span class="at">@</span>
+        <span class="host">archiso</span><span class="path">:~</span>
+        <span class="dollar"> $</span>
+        <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+  <script src="../static/js/terminal.js"></script>
+</body>
+
 </html>
