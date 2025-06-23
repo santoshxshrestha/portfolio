@@ -194,12 +194,25 @@ pub async fn projects() -> Result<impl Responder, actix_web::Error> {
         .body(template.render().unwrap()))
 }
 
+#[derive(Template)]
+#[template(path = "about.html")]
+pub struct About;
+
+#[get("/about")]
+pub async fn about() -> impl Responder {
+    let template = About;
+    HttpResponse::Ok()
+        .content_type("text/html")
+        .body(template.render().unwrap())
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
             .service(home)
             .service(projects)
+            .service(about)
             .service(Files::new("/static", "./static").show_files_listing())
     })
     .bind(("0.0.0.0", 8080))?
