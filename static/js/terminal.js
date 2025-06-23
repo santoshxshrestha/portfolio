@@ -30,7 +30,7 @@ class TerminalTyper {
 
         for (let line of this.infoLines) {
             line.classList.remove("hidden");
-            await this.delay(200);
+            await this.delay(100);
         }
 
         setTimeout(() => {
