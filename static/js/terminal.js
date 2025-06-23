@@ -2,7 +2,7 @@ class TerminalTyper {
     constructor() {
         this.commandText = document.getElementById("command-text");
         this.cursor = document.getElementById("cursor");
-        this.output = document.getElementById("output");
+        this.output = document.querySelector(".output-hidden");
         this.finalPrompt = document.getElementById("final-prompt");
         this.infoLines = document.querySelectorAll(".info-line");
 
