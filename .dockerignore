@@ -5,6 +5,8 @@ target/
 .git
 .gitignore
 
+.README.md
+
 # Ignore environment files
 .env
 .env.*
