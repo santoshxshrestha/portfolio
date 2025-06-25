@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y ca-certificates libssl3 && rm -rf /var/
 
 WORKDIR /app
 COPY --from=builder /usr/src/portfolio/target/release/portfolio ./portfolio
+COPY --from=builder /usr/src/portfolio/static ./static
+COPY --from=builder /usr/src/portfolio/templates ./templates
+COPY --from=builder /usr/src/portfolio/data ./data
+
 RUN chmod +x ./portfolio
 
 ENV RUST_LOG=info
