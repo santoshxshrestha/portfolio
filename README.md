@@ -2,6 +2,9 @@
 
 A modern, responsive personal portfolio website built with Rust and Actix Web framework. This portfolio showcases my projects, skills, and professional experience through a fast and efficient web application.
 
+> [!NOTE]
+> The server runs in port 8080
+
 ## Tech Stack
 
 - **Backend**: Rust with Actix Web
@@ -13,13 +16,13 @@ A modern, responsive personal portfolio website built with Rust and Actix Web fr
 ## Dependencies
 
 ```toml
-actix-files = "0.6.6"     
-actix-web = "4.11.0"      
-askama = "0.14.0"          
-dotenv = "0.15.0"         
-reqwest = "0.12.20"     
+actix-files = "0.6.6"
+actix-web = "4.11.0"
+askama = "0.14.0"
+dotenv = "0.15.0"
+reqwest = "0.12.20"
 serde = "1.0.219"
-toml = "0.8.23"            
+toml = "0.8.23"
 ```
 
 ## 📁 Project Structure
@@ -28,8 +31,8 @@ toml = "0.8.23"
 portfolio/
 ├── src/
 │   ├──  main.rs          # Application entry point
-│ 
-│  
+│
+│
 ├── templates/           # Askama HTML templates
 ├── static/             # CSS, JS, images, and other assets
 ├── data/                # Raw Data files
@@ -44,7 +47,6 @@ portfolio/
 2. Copy the binary and static files to your server
 3. Set up environment variables
 4. Run the application with a process manager like systemd
-
 
 ## 📝 License
 
