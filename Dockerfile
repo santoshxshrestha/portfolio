@@ -8,7 +8,7 @@ FROM debian:bookworm-slim
 
 RUN apt-get update && apt-get install -y ca-certificates libssl3 && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+WORKDIR /portfolio
 COPY --from=builder /usr/src/portfolio/target/release/portfolio ./portfolio
 COPY --from=builder /usr/src/portfolio/static ./static
 COPY --from=builder /usr/src/portfolio/templates ./templates
