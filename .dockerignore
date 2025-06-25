@@ -1,0 +1,14 @@
+# Ignore the target dir (build artifacts)
+target/
+
+# Ignore version control
+.git
+.gitignore
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore test, docs, and local dev files
+/tests/
+docs/
