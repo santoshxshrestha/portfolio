@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: actions/setup-rust@v5
+        with:
+          rust-version: "1.87.0"
+
+      - name: Echo rust version
+        run: rust --version
