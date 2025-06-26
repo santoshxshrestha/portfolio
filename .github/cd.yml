@@ -1,8 +1,10 @@
 name: Rust
 
 on:
-  push:
-    branches: ["main"]
+  workflow_run:
+    workflows: ["ci"]
+    types:
+      - completed
 
 permissions:
   contents: write
@@ -15,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Set up Rust
         uses: actions-rs/toolchain@v1.0.6
