@@ -7,6 +7,8 @@ use askama::Template;
 use dotenv::dotenv;
 use reqwest;
 use serde::Deserialize;
+use sqlx::postgres::PgPoolOptions;
+use std::env;
 use std::error::Error;
 use std::fs;
 use std::path::Path;
@@ -220,6 +222,14 @@ struct Message {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    dotenv().ok();
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL mut be set.");
+    let pool = PgPoolOptions::new()
+        .max_connections(5)
+        .connect(&database_url)
+        .await
+        .expect("Failed to create pool.");
+
     HttpServer::new(|| {
         App::new()
             .service(home)
