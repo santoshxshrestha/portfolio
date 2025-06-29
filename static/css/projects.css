@@ -141,7 +141,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
     backdrop-filter: blur(15px);
-    background: rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -295,13 +294,23 @@ body {
 }
 
 @media (max-width: 768px) {
+
+    .container, .project {
+        backdrop-filter: none;
+    }
     .header{
         animation: none;
     }
 
     .home-btn{
-        top: 0px;
-        left: 0px;
+        top: 40px;
+        left: 6px;
+        transition:none;
+        background: none;
+    }
+
+    .home-btn:hover{
+        transform: none;
     }
 
     .info {
@@ -326,6 +335,25 @@ body {
     .container{
         animation: none;
     }
+    .project-links a{
+        transition: none;
+    }
+    .project-links a:hover{
+        transform: none;
+    }
+
+    .commits-title {
+        animation: none;
+    }
+    .commit-item:hover {
+        transform: none;
+    }
+
+    .project-content:hover {
+        transform: none;
+        translate: none;
+    }
+
 }
 
 @media (max-width: 480px) {
