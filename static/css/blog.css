@@ -149,6 +149,34 @@ body {
     border-top-right-radius: 0%;
 }
 
+.home-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.home-btn:hover {
+    background: rgba(187, 134, 252, 0.2);
+    border-color: rgba(187, 134, 252, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(187, 134, 252, 0.3);
+    color: #fff;
+}
+
+
 @media (max-width: 600px) {
     .name {
         font-size: 2rem;
