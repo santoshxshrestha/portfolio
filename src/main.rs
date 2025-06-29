@@ -33,7 +33,6 @@ pub struct Repo {
     pub name: String,
     pub description: Option<String>, // some repos may not have descriptions
     pub html_url: String,
-    pub updated_at: String,
     pub stargazers_count: i32,
     pub commits: Vec<Commit>,
 }
@@ -156,7 +155,6 @@ pub async fn get_repo(matched_projects: Vec<RepoStats>) -> Result<Vec<Repo>, req
             name: project.name,
             description: project.description,
             html_url: project.html_url,
-            updated_at: project.updated_at,
             stargazers_count: project.stargazers_count,
             commits,
         });
