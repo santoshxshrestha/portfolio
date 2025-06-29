@@ -219,6 +219,7 @@ pub struct Blog {
 struct Message {
     id: i32,
     content: String,
+    time_stamp: NaiveDateTime,
 }
 
 #[get("/blog")]
@@ -239,6 +240,7 @@ async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> 
         .map(|row| Message {
             id: row.id,
             content: row.content,
+            time_stamp: row.time_stamp,
         })
         .collect();
 

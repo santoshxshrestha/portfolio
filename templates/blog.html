@@ -11,7 +11,7 @@
 
 <body>
   <div class="container">
-    <h1 class="title">Blog</h1>
+    <h1 class="name">Blog</h1>
     <div class="messages">
       {% for message in messages %}
       <div class="message">
@@ -19,6 +19,7 @@
           <span class="message-id">#{{ message.id }}</span>
         </div>
         <div class="message-content">{{ message.content }}</div>
+        <small>{{ message.time_stamp.format("%Y-%m-%d %H:%M:%S") }}</small>
       </div>
       {% endfor %}
     </div>
