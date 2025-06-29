@@ -1,3 +1,4 @@
+#![allow(unused)]
 use actix_files::Files;
 use actix_web::App;
 use actix_web::HttpServer;
@@ -202,6 +203,19 @@ pub async fn about() -> impl Responder {
     HttpResponse::Ok()
         .content_type("text/html")
         .body(template.render().unwrap())
+}
+
+#[derive(Template)]
+#[template(path = "blog.html")]
+pub struct Blog {
+    message: Vec<Message>,
+}
+
+#[derive(Debug)]
+struct Message {
+    id: i32,
+    content: String,
+    username: String,
 }
 
 #[actix_web::main]
