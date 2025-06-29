@@ -2,11 +2,13 @@
 use actix_files::Files;
 use actix_web::App;
 use actix_web::HttpServer;
+use actix_web::web;
 use actix_web::{HttpResponse, Responder, get};
 use askama::Template;
 use dotenv::dotenv;
 use reqwest;
 use serde::Deserialize;
+use sqlx::pool;
 use sqlx::postgres::PgPoolOptions;
 use std::env;
 use std::error::Error;
@@ -210,14 +212,42 @@ pub async fn about() -> impl Responder {
 #[derive(Template)]
 #[template(path = "blog.html")]
 pub struct Blog {
-    message: Vec<Message>,
+    messages: Vec<Message>,
 }
 
 #[derive(Debug)]
 struct Message {
     id: i32,
     content: String,
-    username: String,
+}
+
+#[get("/blog")]
+async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> {
+    let rows = sqlx::query!(
+        r#"
+        select id,content 
+        from blog
+        order by id desc
+        "#
+    )
+    .fetch_all(&**pool)
+    .await
+    .map_err(actix_web::error::ErrorInternalServerError)?;
+
+    let content: Vec<Message> = rows
+        .into_iter()
+        .map(|row| Message {
+            id: row.id,
+            content: row.content,
+        })
+        .collect();
+
+    let template = Blog { messages: content };
+    let body = template
+        .render()
+        .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
+
+    Ok(HttpResponse::Ok().body(body))
 }
 
 #[actix_web::main]
@@ -230,12 +260,14 @@ async fn main() -> std::io::Result<()> {
         .await
         .expect("Failed to create pool.");
 
-    HttpServer::new(|| {
+    HttpServer::new(move || {
         App::new()
             .service(home)
             .service(projects)
             .service(about)
+            .service(blog)
             .service(Files::new("/static", "./static").show_files_listing())
+            .app_data(web::Data::new(pool.clone()))
     })
     .bind(("0.0.0.0", 8080))?
     .run()
