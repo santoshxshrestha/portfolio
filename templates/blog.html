@@ -18,12 +18,13 @@
       <i class="fas fa-home"></i>
       Home
     </a>
-    <h1 class="name">Blog</h1>
+    <h1 class="name">Santosh's - Blog</h1>
     <div class="messages">
       {% for message in messages %}
       <div class="message">
         <div class="message-header">
           <span class="message-id">#{{ message.id }}</span>
+          <span class="message-topic">{{ message.topic }}</span>
         </div>
         <div class="message-content">{{ message.content }}</div>
       </div>

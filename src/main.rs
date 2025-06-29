@@ -218,6 +218,7 @@ pub struct Blog {
 #[derive(Debug)]
 struct Message {
     id: i32,
+    topic: String,
     content: String,
 }
 
@@ -225,7 +226,7 @@ struct Message {
 async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> {
     let rows = sqlx::query!(
         r#"
-        select id,content 
+        select id,topic,content 
         from blog
         order by id desc
         "#
@@ -238,6 +239,7 @@ async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> 
         .into_iter()
         .map(|row| Message {
             id: row.id,
+            topic: row.topic,
             content: row.content,
         })
         .collect();

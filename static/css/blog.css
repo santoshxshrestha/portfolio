@@ -92,7 +92,26 @@ body {
     font-weight: 300;
     margin-bottom: 0.5rem;
     margin-top: 30px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.06em;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
+    background-size: 200% 200%;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+.message-id{
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+.message-topic {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    margin-top: 30px;
+    letter-spacing: -0.06em;
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
     background-size: 200% 200%;
     background-clip: text;
