@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santosh - Blog</title>
+  <link rel="stylesheet" href="../static/css/blog.css" />
+  <link rel="icon" href="../static/images/favicon.ico" />
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">Blog</h1>
+    <div class="messages">
+      {% for message in messages %}
+      <div class="message">
+        <div class="message-header">
+          <span class="message-id">#{{ message.id }}</span>
+        </div>
+        <div class="message-content">{{ message.content }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+
+</html>
