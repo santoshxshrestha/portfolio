@@ -101,25 +101,16 @@ body {
     animation: gradientShift 3s ease-in-out infinite;
 }
 
-.title {
-    font-size: 1.2rem;
-    color: #94a3b8;
-    font-weight: 400;
-    margin-bottom: 2rem;
-}
-
 .messages {
     display: grid;
     column-gap: 5%;
-    gap: 2rem;
     width: 100%;
     flex-grow: 1;
-
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem 4rem; /* vertical and horizontal gap */
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 4rem; 
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
 
 }
 
@@ -138,7 +129,6 @@ body {
     overflow: hidden;
     min-height: 250px;
 
-    border-left: 2px solid #ef4444;
     animation: gradientShift 3s ease-in-out infinite;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     transition: transform 0.2s ease;
@@ -146,11 +136,17 @@ body {
 }
 
 .message:nth-child(odd) {
-  margin-bottom: 8rem;
+    margin-bottom: 8rem;
+    border-left: 2px solid white;
+    border-bottom-left-radius: 0%;
+    border-top-left-radius: 0%;
 }
 
 .message:nth-child(even) {
-  margin-top: 8rem;
+    border-right: 2px solid white;
+    margin-top: 8rem;
+    border-bottom-right-radius: 0%;
+    border-top-right-radius: 0%;
 }
 
 @media (max-width: 600px) {
