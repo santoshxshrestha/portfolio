@@ -1,4 +1,3 @@
-#![allow(unused)]
 use actix_files::Files;
 use actix_web::App;
 use actix_web::HttpServer;
@@ -368,6 +367,7 @@ struct BlogDetailTemplate {
     title: String,
     created_at: String,
     content: String,
+    excerpt: String,
 }
 
 #[get("/blog/{id}")]
@@ -377,7 +377,7 @@ async fn blog_detail(
 ) -> actix_web::Result<HttpResponse> {
     let id = path.into_inner();
     let row = sqlx::query!(
-        "SELECT title, content, created_at FROM blog WHERE id = $1",
+        "SELECT title, content, created_at,excerpt FROM blog WHERE id = $1",
         id
     )
     .fetch_one(&**pool)
@@ -393,6 +393,7 @@ async fn blog_detail(
         title: row.title,
         created_at: row.created_at.to_string(),
         content: html_output,
+        excerpt: row.excerpt,
     };
 
     let body = template.render().unwrap();

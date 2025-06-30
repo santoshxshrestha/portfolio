@@ -1,8 +1,10 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8" />
   <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../static/css/blog_detail.css" />
   <link rel="icon" href="../static/images/favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -14,14 +16,17 @@
   <div class="container">
     <div class="button">
       <div class="btn close">
-        <a href="/blog">
+        <a href="/blog" title="Back to blog list" aria-label="Back to blog list">
           <i class="fa-solid fa-xmark"></i>
         </a>
       </div>
     </div>
     <h1 class="name">{{ title }}</h1>
-    <div class="meta">{{ created_at }}</div>
-    <div class="blog-content">{{ content|safe }}</div>
+    <div class="content">
+      <div class="meta">{{ created_at }}</div>
+      <div class="excerpt">{{ excerpt }}</div>
+      <div class="blog-content">{{ content|safe }}</div>
+    </div>
   </div>
 </body>
 
