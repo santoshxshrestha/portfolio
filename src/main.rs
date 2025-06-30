@@ -3,7 +3,8 @@ use actix_files::Files;
 use actix_web::App;
 use actix_web::HttpServer;
 use actix_web::web;
-use actix_web::{HttpResponse, Responder, get};
+use actix_web::web::Form;
+use actix_web::{HttpResponse, Responder, get, post};
 use askama::Template;
 use chrono::NaiveDateTime;
 use dotenv::dotenv;
@@ -218,16 +219,6 @@ pub struct Blog {
 }
 
 #[derive(Debug)]
-struct Message {
-    id: i32,
-    title: String,
-    slug: String,
-    content: String,
-    excerpt: String,
-    created_at: String,
-}
-
-#[derive(Debug)]
 struct BlogCard {
     id: i32,
     title: String,
@@ -266,28 +257,116 @@ async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> 
     Ok(HttpResponse::Ok().body(body))
 }
 
-// #[get("/blog/{slug}")]
-// async fn get_post(slug: web::Path<String>, db: web::Data<Pool>) -> impl Responder {
-//     let row = sqlx::query!("SELECT title, content FROM posts WHERE slug = $1", &*slug)
-//         .fetch_one(db.get_ref())
-//         .await
-//         .unwrap();
-//
-//     let html_content = markdown_to_html(&row.content); // if it's Markdown
-//
-//     HttpResponse::Ok().body(format!(
-//         "<h1>{}</h1>\n<div>{}</div>",
-//         row.title, html_content
-//     ))
-// }
-//
+#[derive(Template)]
+#[template(path = "admin.html")]
+struct AdminTemplate {
+    messages: Vec<Message>,
+}
+
+#[derive(Debug)]
+struct Message {
+    id: i32,
+    title: String,
+    slug: String,
+    content: String,
+    excerpt: String,
+    created_at: PrimitiveDateTime,
+}
+
+#[get("/admin")]
+async fn admin(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> {
+    let rows = sqlx::query!(
+        r#"
+        select id,title,slug, content, excerpt, created_at 
+        from blog
+        order by id desc
+        "#
+    )
+    .fetch_all(&**pool)
+    .await
+    .map_err(actix_web::error::ErrorInternalServerError)?;
+
+    let content: Vec<Message> = rows
+        .into_iter()
+        .map(|row| Message {
+            id: row.id,
+            title: row.title,
+            slug: row.slug,
+            content: row.content,
+            excerpt: row.excerpt,
+            created_at: row.created_at,
+        })
+        .collect();
+
+    let template = AdminTemplate { messages: content };
+    let body = template
+        .render()
+        .map_err(|e| actix_web::error::ErrorInternalServerError(e.to_string()))?;
+
+    Ok(HttpResponse::Ok().body(body))
+}
+
+#[derive(Deserialize)]
+struct NewMessage {
+    title: String,
+    slug: String,
+    content: String,
+    excerpt: String,
+}
+
+#[post("/send")]
+async fn send_message(
+    pool: web::Data<sqlx::PgPool>,
+    form: Form<NewMessage>,
+) -> actix_web::Result<HttpResponse> {
+    sqlx::query!(
+        "INSERT INTO blog (title, slug, content, excerpt) VALUES ($1, $2, $3, $4)",
+        form.title,
+        form.slug,
+        form.content,
+        form.excerpt,
+    )
+    .execute(&**pool)
+    .await
+    .map_err(actix_web::error::ErrorInternalServerError)?;
+
+    Ok(HttpResponse::SeeOther()
+        .append_header(("Location", "/admin"))
+        .finish())
+}
+
+#[derive(Deserialize)]
+struct DeleteForm {
+    id: i32,
+}
+
+#[post("/delete")]
+async fn delete_message(
+    pool: web::Data<sqlx::PgPool>,
+    form: Form<DeleteForm>,
+) -> actix_web::Result<HttpResponse> {
+    sqlx::query!(
+        // The database treats $1, $2 as a string value, not as SQL code.
+        // so the sql injection is prevented here
+        "DELETE FROM blog WHERE id = $1",
+        form.id
+    )
+    .execute(&**pool)
+    .await
+    .map_err(actix_web::error::ErrorInternalServerError)?;
+
+    // Redirect back to home page to show updated messages
+    Ok(HttpResponse::SeeOther()
+        .append_header(("Location", "/admin"))
+        .finish())
+}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     dotenv().ok();
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL mut be set.");
     let pool = PgPoolOptions::new()
-        .max_connections(5)
+        .max_connections(10)
         .connect(&database_url)
         .await
         .expect("Failed to create pool.");
@@ -298,6 +377,9 @@ async fn main() -> std::io::Result<()> {
             .service(projects)
             .service(about)
             .service(blog)
+            .service(admin)
+            .service(delete_message)
+            .service(send_message)
             .service(Files::new("/static", "./static").show_files_listing())
             .app_data(web::Data::new(pool.clone()))
     })

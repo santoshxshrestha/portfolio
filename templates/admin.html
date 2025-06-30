@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="../static/css/admin.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="title">Admin - Blog</h1>
+      <div class="message-form">
+        <form method="post" action="/send" class="chat-form">
+          <input
+            class="input"
+            name="title"
+            placeholder="Enter you title"
+            required
+          />
+          <input
+            class="input"
+            name="slug"
+            placeholder="Enter your slug"
+            required
+          />
+
+          <input
+            class="input"
+            name="content"
+            placeholder="enter you content"
+            required
+          />
+
+          <input
+            class="input"
+            name="excerpt"
+            placeholder="enter you excerpt"
+            required
+          />
+
+          <button class="send-btn" type="submit">Send</button>
+        </form>
+      </div>
+
+      <div class="messages">
+        {% for message in messages %}
+        <div class="message">
+          <form method="post" action="/delete" class="delete-form">
+            <input type="hidden" name="id" value="{{ message.id }}" />
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+          <div class="message-header">
+            <span class="message-id">#{{ message.id }}</span>
+            <span class="message-username">{{ message.title }}</span>
+          </div>
+          <div class="message-content">{{ message.slug }}</div>
+          <div class="message-content">{{ message.content }}</div>
+          <div class="message-content">{{ message.excerpt }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
