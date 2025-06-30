@@ -373,6 +373,11 @@ async fn blog_detail(
     path: web::Path<i32>,
 ) -> actix_web::Result<HttpResponse> {
     let id = path.into_inner();
+    sqlx::query!("update blog set views = views + 1 where id = $1", id)
+        .execute(&**pool)
+        .await
+        .map_err(actix_web::error::ErrorInternalServerError)?;
+
     let row = sqlx::query!(
         "SELECT title, content, created_at,excerpt FROM blog WHERE id = $1",
         id
