@@ -123,10 +123,10 @@ body {
     transition: all 0.3s ease, transform 0.2s;
     position: relative;
     overflow: hidden;
-    min-height: 250px;
     animation: gradientShift 3s ease-in-out infinite;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     cursor: pointer;
+    max-height: 320px;
 }
 
 .message:hover {
@@ -182,12 +182,19 @@ body {
         padding: 1rem;
     }
 }
-@media (max-width: 800px) {
+@media (max-width: 700px) {
     .messages {
         grid-template-columns: 1fr;
         gap: 2rem 0;
         padding: 1rem 0.5rem;
     }
+
+    .message {
+        padding: 1.1rem;
+        min-height: auto;
+        max-height: 200px;
+    }
+
     .message:nth-child(odd){
         margin-top: 0;
         margin-bottom: 2rem;
@@ -223,7 +230,8 @@ body {
     }
     .message {
         padding: 1.1rem;
-        min-height: 180px;
+        min-height: auto;
+        max-height: 250px;
     }
     .home-btn {
         top: 20px;
