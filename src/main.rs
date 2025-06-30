@@ -1,3 +1,4 @@
+#![allow(unused)]
 use actix_files::Files;
 use actix_web::App;
 use actix_web::HttpServer;
@@ -224,13 +225,14 @@ struct BlogCard {
     title: String,
     excerpt: String,
     created_at: PrimitiveDateTime,
+    views: i32,
 }
 
 #[get("/blog")]
 async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> {
     let rows = sqlx::query!(
         r#"
-        select id,title, excerpt, created_at
+        select id,title, excerpt,views, created_at
         from blog
         order by id desc
         "#
@@ -246,6 +248,7 @@ async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> 
             title: row.title,
             excerpt: row.excerpt,
             created_at: row.created_at,
+            views: row.views,
         })
         .collect();
 
@@ -269,7 +272,6 @@ struct Message {
     title: String,
     content: String,
     excerpt: String,
-    created_at: PrimitiveDateTime,
 }
 
 #[get("/admin")]
@@ -292,7 +294,6 @@ async fn admin(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse>
             title: row.title,
             content: row.content,
             excerpt: row.excerpt,
-            created_at: row.created_at,
         })
         .collect();
 
