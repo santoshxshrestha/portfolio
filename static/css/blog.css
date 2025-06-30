@@ -99,7 +99,6 @@ body {
     animation: gradientShift 3s ease-in-out infinite;
 }
 
-/* Message grid */
 .messages {
     display: grid;
     column-gap: 5%;
@@ -112,7 +111,6 @@ body {
     padding: 2rem;
 }
 
-/* Message card */
 .message {
     padding: 2rem;
     display: flex;
@@ -131,15 +129,13 @@ body {
     cursor: pointer;
 }
 
-/* Hover effect for message card */
 .message:hover {
     transform: translateY(-12px) scale(1.025);
-    box-shadow: 0 16px 48px 0 rgba(187, 134, 252, 0.18), 0 8px 16px rgba(0,0,0,0.13);
-    border-color: #bb86fc;
+    box-shadow: 0 16px 90px 0 rgba(187, 134, 252, 0.18), 0 8px 16px rgba(0,0,0,0.13);
+    border-color: lightcyan;
     z-index: 2;
 }
 
-/* Message alternation for visual separation */
 .message:nth-child(odd) {
     margin-bottom: 8rem;
     border-left: 2px solid white;
@@ -153,7 +149,6 @@ body {
     border-top-right-radius: 0%;
 }
 
-/* Home button */
 .home-btn {
     position: absolute;
     top: 30px;
@@ -180,7 +175,6 @@ body {
     color: #fff;
 }
 
-/* Responsive styles */
 @media (max-width: 1000px) {
     .messages {
         max-width: 100%;
@@ -194,22 +188,30 @@ body {
         gap: 2rem 0;
         padding: 1rem 0.5rem;
     }
-    .message:nth-child(odd),
+    .message:nth-child(odd){
+        margin-top: 0;
+        margin-bottom: 2rem;
+        border-radius: 0px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
     .message:nth-child(even) {
         margin-top: 0;
         margin-bottom: 2rem;
-        border-radius: 20px;
-        border-left: 2px solid white;
-        border-right: 2px solid white;
-        border-bottom-left-radius: 20px;
+        border-radius: 0px;
         border-top-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
     }
 }
+
 @media (max-width: 600px) {
+    *{
+        animation: none;
+        transform: none;
+        transition: none;
+    }
     .name {
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-top: 1.5rem;
     }
     .container {
@@ -224,10 +226,17 @@ body {
         min-height: 180px;
     }
     .home-btn {
-        top: 10px;
+        top: 20px;
         left: 10px;
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
+        background: none;
+    }
+    .home-btn:hover{
+        transform: none;
+    }
+    .message:hover{
+        transform: none;
     }
     .message-id,
     .message-topic {
