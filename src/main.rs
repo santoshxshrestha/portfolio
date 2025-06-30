@@ -5,11 +5,13 @@ use actix_web::HttpServer;
 use actix_web::web;
 use actix_web::{HttpResponse, Responder, get};
 use askama::Template;
+use chrono::NaiveDateTime;
 use dotenv::dotenv;
 use reqwest;
 use serde::Deserialize;
 use sqlx::pool;
 use sqlx::postgres::PgPoolOptions;
+use sqlx::types::time::PrimitiveDateTime;
 use std::env;
 use std::error::Error;
 use std::fs;
@@ -212,21 +214,32 @@ pub async fn about() -> impl Responder {
 #[derive(Template)]
 #[template(path = "blog.html")]
 pub struct Blog {
-    messages: Vec<Message>,
+    messages: Vec<BlogCard>,
 }
 
 #[derive(Debug)]
 struct Message {
     id: i32,
-    topic: String,
+    title: String,
+    slug: String,
     content: String,
+    excerpt: String,
+    created_at: String,
+}
+
+#[derive(Debug)]
+struct BlogCard {
+    id: i32,
+    title: String,
+    excerpt: String,
+    created_at: PrimitiveDateTime,
 }
 
 #[get("/blog")]
 async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> {
     let rows = sqlx::query!(
         r#"
-        select id,topic,content 
+        select id,title, excerpt, created_at
         from blog
         order by id desc
         "#
@@ -235,12 +248,13 @@ async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> 
     .await
     .map_err(actix_web::error::ErrorInternalServerError)?;
 
-    let content: Vec<Message> = rows
+    let content: Vec<BlogCard> = rows
         .into_iter()
-        .map(|row| Message {
+        .map(|row| BlogCard {
             id: row.id,
-            topic: row.topic,
-            content: row.content,
+            title: row.title,
+            excerpt: row.excerpt,
+            created_at: row.created_at,
         })
         .collect();
 
@@ -251,6 +265,22 @@ async fn blog(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> 
 
     Ok(HttpResponse::Ok().body(body))
 }
+
+// #[get("/blog/{slug}")]
+// async fn get_post(slug: web::Path<String>, db: web::Data<Pool>) -> impl Responder {
+//     let row = sqlx::query!("SELECT title, content FROM posts WHERE slug = $1", &*slug)
+//         .fetch_one(db.get_ref())
+//         .await
+//         .unwrap();
+//
+//     let html_content = markdown_to_html(&row.content); // if it's Markdown
+//
+//     HttpResponse::Ok().body(format!(
+//         "<h1>{}</h1>\n<div>{}</div>",
+//         row.title, html_content
+//     ))
+// }
+//
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
