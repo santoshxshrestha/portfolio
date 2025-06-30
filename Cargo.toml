@@ -11,3 +11,6 @@ dotenv = "0.15.0"
 reqwest = { version = "0.12.20", features = ["json"] }
 serde = { version = "1.0.219", features = ["derive"] }
 toml = "0.8.23"
+sqlx = { version = "0.8.6", features = ["macros", "postgres", "runtime-tokio-native-tls", "time"] }
+chrono = "0.4.41"
+pulldown-cmark = "0.13.0"

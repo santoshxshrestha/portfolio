@@ -152,10 +152,10 @@ body {
 
 
 .project:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-12px) scale(1.025);
+    box-shadow: 0 16px 48px 0 rgba(187, 134, 252, 0.18), 0 8px 16px rgba(0,0,0,0.13);
+    border-color: white;
+    z-index: 2;
 }
 
 
@@ -163,7 +163,7 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #ffffff;
+    color: lightcyan;
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
     background-clip: text;
     color: transparent;

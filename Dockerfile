@@ -13,6 +13,7 @@ COPY --from=builder /usr/src/portfolio/target/release/portfolio ./portfolio
 COPY --from=builder /usr/src/portfolio/static ./static
 COPY --from=builder /usr/src/portfolio/templates ./templates
 COPY --from=builder /usr/src/portfolio/data ./data
+COPY --from=builder /usr/src/flox/.sqlx ./.sqlx
 
 RUN chmod +x ./portfolio
 

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santosh - Blog</title>
+  <link rel="stylesheet" href="../static/css/blog.css" />
+  <link rel="icon" href="../static/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="container">
+    <a href="/" class="home-btn">
+      <i class="fas fa-home"></i>
+      Home
+    </a>
+    <h1 class="name">Santosh's - Blog</h1>
+    <div class="messages">
+      {% for message in messages %}
+      <div class="message">
+        <div class="message-header">
+          <a href="/blog/{{  message.id }}" style="text-decoration: none">
+          <span class="message-id">#{{ message.id }} </span>
+          <span class="message-topic">{{ message.title }}</span>
+          </a>
+        </div>
+        <div class="message-content">{{ message.excerpt }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+
+</html>
