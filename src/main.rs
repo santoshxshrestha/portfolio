@@ -267,7 +267,6 @@ struct AdminTemplate {
 struct Message {
     id: i32,
     title: String,
-    slug: String,
     content: String,
     excerpt: String,
     created_at: PrimitiveDateTime,
@@ -277,7 +276,7 @@ struct Message {
 async fn admin(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse> {
     let rows = sqlx::query!(
         r#"
-        select id,title,slug, content, excerpt, created_at 
+        select id,title, content, excerpt, created_at 
         from blog
         order by id desc
         "#
@@ -291,7 +290,6 @@ async fn admin(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse>
         .map(|row| Message {
             id: row.id,
             title: row.title,
-            slug: row.slug,
             content: row.content,
             excerpt: row.excerpt,
             created_at: row.created_at,
@@ -309,7 +307,6 @@ async fn admin(pool: web::Data<sqlx::PgPool>) -> actix_web::Result<HttpResponse>
 #[derive(Deserialize)]
 struct NewMessage {
     title: String,
-    slug: String,
     content: String,
     excerpt: String,
 }
@@ -320,9 +317,8 @@ async fn send_message(
     form: Form<NewMessage>,
 ) -> actix_web::Result<HttpResponse> {
     sqlx::query!(
-        "INSERT INTO blog (title, slug, content, excerpt) VALUES ($1, $2, $3, $4)",
+        "INSERT INTO blog (title,  content, excerpt) VALUES ($1, $2, $3 )",
         form.title,
-        form.slug,
         form.content,
         form.excerpt,
     )
@@ -398,6 +394,26 @@ async fn blog_detail(
 
     let body = template.render().unwrap();
     Ok(HttpResponse::Ok().body(body))
+}
+
+#[derive(Deserialize)]
+struct Views {
+    id: i32,
+}
+
+#[post("/blog/views")]
+async fn views(
+    pool: web::Data<sqlx::PgPool>,
+    form: Form<DeleteForm>,
+) -> actix_web::Result<HttpResponse> {
+    sqlx::query!("update blog set views = views + 1 where id = $1", form.id)
+        .execute(&**pool)
+        .await
+        .map_err(actix_web::error::ErrorInternalServerError)?;
+
+    Ok(HttpResponse::SeeOther()
+        .append_header(("Location", "/blog/{id}"))
+        .finish())
 }
 
 #[actix_web::main]
