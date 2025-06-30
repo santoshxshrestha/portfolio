@@ -22,7 +22,7 @@
     <div class="messages">
       {% for message in messages %}
       <div class="message">
-        <div class="views"> <i class="fa-solid fa-eye"></i>{{ message.views }}</div>
+        <div class="views"> <i class="fa-solid fa-eye"></i> {{ message.views }}</div>
         <div class="message-header">
           <a href="/blog/{{  message.id }}" style="text-decoration: none">
           <span class="message-id">#{{ message.id }} </span>
