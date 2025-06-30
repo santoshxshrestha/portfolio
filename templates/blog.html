@@ -23,8 +23,10 @@
       {% for message in messages %}
       <div class="message">
         <div class="message-header">
+          <a href="/blog/{{  message.id }}">
           <span class="message-id">#{{ message.id }}</span>
           <span class="message-topic">{{ message.title }}</span>
+          </a>
         </div>
         <div class="message-content">{{ message.excerpt }}</div>
       </div>

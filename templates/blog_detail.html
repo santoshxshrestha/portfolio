@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+
+  <body>
+    <a href="/blog">← Back to Blog</a>
+    <h1>{{ title }}</h1>
+    <div class="meta">{{ created_at }}</div>
+    <div class="blog-content">{{ content|safe }}</div>
+  </body>
+</html>

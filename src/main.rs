@@ -8,6 +8,7 @@ use actix_web::{HttpResponse, Responder, get, post};
 use askama::Template;
 use chrono::NaiveDateTime;
 use dotenv::dotenv;
+use pulldown_cmark::{Options, Parser, html};
 use reqwest;
 use serde::Deserialize;
 use sqlx::pool;
@@ -361,6 +362,43 @@ async fn delete_message(
         .finish())
 }
 
+#[derive(Template)]
+#[template(path = "blog_detail.html")]
+struct BlogDetailTemplate {
+    title: String,
+    created_at: String,
+    content: String,
+}
+
+#[get("/blog/{id}")]
+async fn blog_detail(
+    pool: web::Data<sqlx::PgPool>,
+    path: web::Path<i32>,
+) -> actix_web::Result<HttpResponse> {
+    let id = path.into_inner();
+    let row = sqlx::query!(
+        "SELECT title, content, created_at FROM blog WHERE id = $1",
+        id
+    )
+    .fetch_one(&**pool)
+    .await
+    .map_err(actix_web::error::ErrorInternalServerError)?;
+
+    // Markdown to HTML
+    let parser = Parser::new_ext(&row.content, Options::all());
+    let mut html_output = String::new();
+    html::push_html(&mut html_output, parser);
+
+    let template = BlogDetailTemplate {
+        title: row.title,
+        created_at: row.created_at.to_string(),
+        content: html_output,
+    };
+
+    let body = template.render().unwrap();
+    Ok(HttpResponse::Ok().body(body))
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     dotenv().ok();
@@ -379,6 +417,7 @@ async fn main() -> std::io::Result<()> {
             .service(blog)
             .service(admin)
             .service(delete_message)
+            .service(blog_detail)
             .service(send_message)
             .service(Files::new("/static", "./static").show_files_listing())
             .app_data(web::Data::new(pool.clone()))
