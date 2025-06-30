@@ -1,14 +1,28 @@
 <!doctype html>
 <html>
-  <head>
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="/static/style.css" />
-  </head>
 
-  <body>
-    <a href="/blog">← Back to Blog</a>
-    <h1>{{ title }}</h1>
+<head>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="../static/css/blog_detail.css" />
+  <link rel="icon" href="../static/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="button">
+      <div class="btn close">
+        <a href="/blog">
+          <i class="fa-solid fa-xmark"></i>
+        </a>
+      </div>
+    </div>
+    <h1 class="name">{{ title }}</h1>
     <div class="meta">{{ created_at }}</div>
     <div class="blog-content">{{ content|safe }}</div>
-  </body>
+  </div>
+</body>
+
 </html>
