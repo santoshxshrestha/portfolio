@@ -20,9 +20,12 @@ actix-files = "0.6.6"
 actix-web = "4.11.0"
 askama = "0.14.0"
 dotenv = "0.15.0"
-reqwest = "0.12.20"
-serde = "1.0.219"
+reqwest = { version = "0.12.20", features = ["json"] }
+serde = { version = "1.0.219", features = ["derive"] }
 toml = "0.8.23"
+sqlx = { version = "0.8.6", features = ["macros", "postgres", "runtime-tokio-native-tls", "time"] }
+chrono = "0.4.41"
+pulldown-cmark = "0.13.0"
 ```
 
 ## 📁 Project Structure
@@ -40,13 +43,6 @@ portfolio/
 ├── Cargo.toml          # Project dependencies
 └── README.md
 ```
-
-### Manual Deployment
-
-1. Build the release version
-2. Copy the binary and static files to your server
-3. Set up environment variables
-4. Run the application with a process manager like systemd
 
 ## 📝 License
 

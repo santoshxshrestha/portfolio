@@ -14,4 +14,10 @@ name = "unix_perms"
 name = "nexish"
 
 [[projects]]
-name = "tmux-session-manager"
+name = "flox"
+
+[[projects]]
+name = "wallpaper-archive"
+
+[[projects]]
+name = "facebook-clone"
