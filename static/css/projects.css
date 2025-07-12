@@ -248,9 +248,15 @@ body {
 
 .commits-list {
     max-height: 200px;
-    overflow-y: auto;
+    overflow-y: scroll;
     border-radius: 8px;
     padding: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.commits-list::-webkit-scrollbar {
+  display: none;            
 }
 
 .commit-item {
