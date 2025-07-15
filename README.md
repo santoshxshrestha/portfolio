@@ -13,6 +13,16 @@ A modern, responsive personal portfolio website built with Rust and Actix Web fr
 - **Configuration**: TOML and dotenv for environment management
 - **Serialization**: Serde for JSON handling
 
+---
+
+plan
+
+- there should the cashing system for projects
+- the home page = term == better idea
+- code base management was never a bad idea
+
+---
+
 ## Dependencies
 
 ```toml
