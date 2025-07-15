@@ -1,6 +1,7 @@
 /target
 /node_modules
 .env
+.direnv/
 
 
 # Added by cargo
