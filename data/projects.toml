@@ -2,6 +2,9 @@
 name = "voxlan"
 
 [[projects]]
+name = "mdwatch"
+
+[[projects]]
 name = "nexish"
 
 [[projects]]

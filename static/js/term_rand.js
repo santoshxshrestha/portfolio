@@ -30,12 +30,12 @@ class TerminalTyper {
 
         for (let line of this.infoLines) {
             line.classList.remove("hidden");
-            await this.delay(100);
+            await this.delay(0);
         }
 
         setTimeout(() => {
             this.finalPrompt.classList.remove("hidden");
-        }, 500);
+        }, 100);
     }
 
     delay(ms) {
