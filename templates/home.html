@@ -24,8 +24,32 @@
         </div>
         <h1 class="name">Santosh Shrestha (@santoshxshrestha)</h1>
       </div>
-      <p class="title">here goes the title</p>
-      <p class="bio">here goes the respecitve bio</p>
+
+      <div class="term-container">
+        <div class="terminal-content">
+          <div class="prompt-line">
+            <span class="user">[santosh</span><span class="at">@</span>
+            <span class="host">archiso</span><span class="path">~]</span>
+            <span class="dollar">$</span>
+            <span class="command" id="command-text"></span>
+            <span class="cursor" id="cursor"></span>
+          </div>
+
+          <div class="output-hidden hidden">
+            <div class="info-line hidden">
+              <!-- <span class="title">loading title ...</span> -->
+              <span class="bio">loading bio</span>
+            </div>
+          </div>
+
+          <div class="prompt-line hidden" id="final-prompt">
+            <span class="user">[santosh</span><span class="at">@</span>
+            <span class="host">archiso</span><span class="path">~]</span>
+            <span class="dollar"> $</span>
+            <span class="cursor"></span>
+          </div>
+        </div>
+      </div>
       <nav class="nav">
         <a href="projects">Projects</a>
         <a href="about">About me</a>
@@ -46,5 +70,6 @@
       </div>
     </div>
     <script src="../static/js/random_content.js"></script>
+    <script src="../static/js/term_rand.js"></script>
   </body>
 </html>

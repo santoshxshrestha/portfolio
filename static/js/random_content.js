@@ -437,12 +437,14 @@ function getRandomContentPair() {
     return contentPairs[Math.floor(Math.random() * contentPairs.length)];
 }
 
+let title = "";
 function updateContent() {
     const titleElement = document.querySelector(".title");
     const bioElement = document.querySelector(".bio");
 
     const randomPair = getRandomContentPair();
-    titleElement.textContent = randomPair.title;
+    // titleElement.textContent = randomPair.title;
+    title = randomPair.title;
     bioElement.textContent = randomPair.bio;
 }
 
