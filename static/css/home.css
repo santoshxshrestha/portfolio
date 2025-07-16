@@ -235,6 +235,9 @@ body {
     align-items: center;
     gap: 0.15rem;
     margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .user, .at, .host, .path, .dollar {
