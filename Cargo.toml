@@ -15,3 +15,4 @@ sqlx = { version = "0.8.6", features = ["macros", "postgres", "runtime-tokio-nat
 chrono = "0.4.41"
 pulldown-cmark = "0.13.0"
 lru-cache = "0.1.2"
+tokio = "1.46.1"
