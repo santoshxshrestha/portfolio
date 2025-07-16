@@ -439,7 +439,7 @@ function getRandomContentPair() {
 
 let title = "";
 function updateContent() {
-    const titleElement = document.querySelector(".title");
+    // const titleElement = document.querySelector(".title");
     const bioElement = document.querySelector(".bio");
 
     const randomPair = getRandomContentPair();
