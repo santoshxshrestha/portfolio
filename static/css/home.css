@@ -111,8 +111,8 @@ body {
 
 .name {
     font-size: 3rem;
-    font-weight: 300;
-    margin-bottom: 0.5rem;
+    font-weight: 390;
+    margin-bottom: 1rem;
     letter-spacing: -0.02em;
     background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
     background-size: 200% 200%;
@@ -206,20 +206,20 @@ body {
 }
 
 .term-container {
-    margin-bottom: 20px;
+    margin-top: -2rem;
+    margin-bottom: 3rem;
     padding: 0 20px;
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
     animation: fadeInUp 1s ease-out;
 }
 
 .terminal-content {
-    min-width: 720px;
     min-height: 250px;
     border-radius: 16px;
     box-shadow: 0 2px 18px rgba(20, 20, 35, 0.6);
@@ -235,9 +235,6 @@ body {
     align-items: center;
     gap: 0.15rem;
     margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-    word-break: break-all;
-    overflow-wrap: break-word;
 }
 
 .user, .at, .host, .path, .dollar {
@@ -253,6 +250,9 @@ body {
     color: #e2e8f0;
     font-weight: 500;
     letter-spacing: 0.03em;
+    flex-wrap: wrap;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 .cursor {
     width: 0.6ch;
@@ -262,6 +262,7 @@ body {
     height: 1em;
     vertical-align: middle;
 }
+
 @keyframes blink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
@@ -326,12 +327,16 @@ body {
 @media (max-width: 600px) {
     .name {
         font-size: 2rem;
+        margin-bottom: 0rem;
+        margin-bottom: 0.5rem;
     }
 
     .nav {
         flex-direction: column;
         gap: 1rem;
         align-items: center;
+        animation: none;
+        margin-bottom: 1.6rem;
     }
 
     .quick-links {
@@ -340,10 +345,33 @@ body {
         align-items: center;
         margin: 0.5rem 0;
     }
+    .term-container{
+        margin-bottom: 1rem;
+    }
+
     .terminal-content {
         padding: 0.9rem 0.3rem;
         font-size: 0.8rem;
+        min-height: 200px;
+    }
+
+    .profile-photo {
+        width: 100px;
+        height: 100px;
+        padding: 3px;
+    }
+
+    .profile-photo img {
+        border: 1px solid rgba(0, 0, 0, 0.8);
+    }
+
+    .prompt-line {
+        flex-wrap: wrap;
+        word-break: break-all;
+        overflow-wrap: break-word;
+    }
+
+    .nav a{
+        font-size: 0.8rem;
     }
 }
-
-
