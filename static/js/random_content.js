@@ -236,7 +236,7 @@ const contentPairs = [
     bio: "Sometimes you don’t need to fix it all. Just write. Just quit. And come back better.",
   },
   {
-    title: " ~/.bash_history",
+    title: " cat ~/.bash_history",
     bio: "I look back on past commands, not to regret — but to reflect.",
   },
   {
