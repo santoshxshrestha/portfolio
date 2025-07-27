@@ -5,6 +5,7 @@
 }
 
 @keyframes gradientShift {
+
     0%,
     100% {
         background-position: 0% 50%;
@@ -20,6 +21,7 @@
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -31,6 +33,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -42,6 +45,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -50,13 +54,10 @@
 
 body {
     font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     line-height: 1.6;
     color: #e2e8f0;
-    background: linear-gradient(135deg,
-    #0f0f23 0%,
-    #1a1a2e 50%,
-    #16213e 100%);
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
     min-height: 100vh;
 }
 
@@ -105,6 +106,7 @@ body {
     object-fit: cover;
     border: 3px solid rgba(0, 0, 0, 0.8);
 }
+
 .profile-photo:hover::before {
     opacity: 1;
 }
@@ -152,9 +154,9 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg,
-    transparent,
-    rgba(187, 134, 252, 0.3),
-    transparent);
+            transparent,
+            rgba(187, 134, 252, 0.3),
+            transparent);
     transition: left 0.5s ease;
 }
 
@@ -236,15 +238,34 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.user, .at, .host, .path, .dollar {
+.user,
+.at,
+.host,
+.path,
+.dollar {
     font-weight: 600;
 }
 
-.user { color: #4ecdc4; }
-.at { color: #94a3b8; }
-.host { color: #ff6b6b; }
-.path { color: #bb86fc; }
-.dollar { color: #03dac6; }
+.user {
+    color: #4ecdc4;
+}
+
+.at {
+    color: #94a3b8;
+}
+
+.host {
+    color: #ff6b6b;
+}
+
+.path {
+    color: #bb86fc;
+}
+
+.dollar {
+    color: #03dac6;
+}
+
 .command {
     color: #e2e8f0;
     font-weight: 500;
@@ -253,6 +274,7 @@ body {
     word-break: break-all;
     overflow-wrap: break-word;
 }
+
 .cursor {
     width: 0.6ch;
     background: #e2e8f0;
@@ -263,8 +285,16 @@ body {
 }
 
 @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
 }
 
 .output-hidden {
@@ -288,20 +318,24 @@ body {
     /* animation: fadeInUp 0.5s forwards; */
     /* animation-delay: 0s; */
 }
+
 .output-hidden .info-line:not(.hidden) {
     opacity: 1;
     transform: translateY(0);
 }
+
 .label {
     font-weight: 600;
     color: #bb86fc;
     min-width: 80px;
     letter-spacing: 0.03em;
 }
+
 .bio {
     color: #e2e8f0;
     overflow-wrap: break-word;
 }
+
 .bio.highlight {
     color: #4ecdc4;
     font-weight: 600;
@@ -319,7 +353,6 @@ body {
 #final-prompt {
     margin-top: 2.5rem;
 }
-
 
 @media (max-width: 600px) {
     .name {
@@ -342,7 +375,8 @@ body {
         align-items: center;
         margin: 0.5rem 0;
     }
-    .term-container{
+
+    .term-container {
         margin-bottom: 1rem;
     }
 
@@ -368,7 +402,7 @@ body {
         overflow-wrap: break-word;
     }
 
-    .nav a{
+    .nav a {
         font-size: 0.8rem;
     }
 }
