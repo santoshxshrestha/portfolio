@@ -38,7 +38,7 @@ chrono = "0.4.41"
 pulldown-cmark = "0.13.0"
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 portfolio/
@@ -54,11 +54,11 @@ portfolio/
 └── README.md
 ```
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Actix Web](https://actix.rs/) - Fast, powerful web framework for Rust
 - [Askama](https://docs.rs/askama/) - Type-safe, compiled Jinja-like templates
