@@ -543,13 +543,13 @@ async fn views(
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    dotenv().ok();
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set.");
-    let pool = PgPoolOptions::new()
-        .max_connections(10)
-        .connect(&database_url)
-        .await
-        .expect("Failed to create pool.");
+    // dotenv().ok();
+    // let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set.");
+    // let pool = PgPoolOptions::new()
+    // .max_connections(10)
+    // .connect(&database_url)
+    // .await
+    // .expect("Failed to create pool.");
 
     let cache_manager = web::Data::new(CacheManager::new());
 
@@ -564,9 +564,9 @@ async fn main() -> std::io::Result<()> {
             .service(projects)
             .service(about)
             // .service(blog)
-            .service(blog_detail)
+            // .service(blog_detail)
             .service(Files::new("/static", "./static").show_files_listing())
-            .app_data(web::Data::new(pool.clone()))
+            // .app_data(web::Data::new(pool.clone()))
             .app_data(cache_manager.clone())
     })
     .bind(("0.0.0.0", 8080))?
