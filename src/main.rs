@@ -563,7 +563,7 @@ async fn main() -> std::io::Result<()> {
             .service(home)
             .service(projects)
             .service(about)
-            .service(blog)
+            // .service(blog)
             .service(blog_detail)
             .service(Files::new("/static", "./static").show_files_listing())
             .app_data(web::Data::new(pool.clone()))
